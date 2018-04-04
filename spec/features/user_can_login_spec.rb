@@ -7,9 +7,8 @@ describe "As a registered user" do
       visit "/"
 
       click_link "Login"
-
       fill_in "email", with: user.email
-      fill_in "password", with: user.password
+      fill_in "password", with: user.password_digest
       click_on "Sign In"
 
       expect(current_path).to eq("/dashboard")

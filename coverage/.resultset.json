@@ -3,6 +3,12 @@
     "coverage": {
       "/Users/mgmilton/turing/3module/health_maps/app/models/user.rb": [
         1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         null
       ],
       "/Users/mgmilton/turing/3module/health_maps/app/models/application_record.rb": [
@@ -33,6 +39,36 @@
         0,
         0
       ],
+      "/Users/mgmilton/turing/3module/health_maps/app/controllers/sessions_controller.rb": [
+        0,
+        0,
+        null,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        0,
+        0,
+        0,
+        null,
+        0
+      ],
       "/Users/mgmilton/turing/3module/health_maps/app/helpers/application_helper.rb": [
         0,
         0
@@ -48,6 +84,6 @@
         0
       ]
     },
-    "timestamp": 1522876823
+    "timestamp": 1522878165
   }
 }
