@@ -4,6 +4,14 @@
       "/Users/mgmilton/turing/3module/health_maps/app/models/location.rb": [
         1,
         1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        0,
+        null,
         null
       ],
       "/Users/mgmilton/turing/3module/health_maps/app/models/application_record.rb": [
@@ -137,6 +145,6 @@
         0
       ]
     },
-    "timestamp": 1522882333
+    "timestamp": 1522882783
   }
 }
