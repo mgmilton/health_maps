@@ -11,4 +11,12 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery
+//= require bootstrap
+//= require jquery_ujs
+//= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function(){
+       $('.dropdown-toggle').dropdown();
+   });
