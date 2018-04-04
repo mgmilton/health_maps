@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path
     else
-      flash[:success] = "Incorrect login credentials!"
+      flash[:warning] = "Incorrect login credentials!"
       render :_new
     end
   end

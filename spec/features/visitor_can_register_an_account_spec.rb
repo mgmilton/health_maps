@@ -6,24 +6,49 @@ describe "As a guest visitor" do
       visit "/"
 
       click_link "Login"
+      click_link "Sign Up"
+      expect(current_path).to eq("/users/new")
 
-      expect(current_path).to eq("/register")
+      fill_in "user[name]", with: "Tom Hanks"
+      fill_in "user[location]", with: "Hollywood"
+      fill_in "user[email]", with: "user@yahoo.com"
+      fill_in "user[password]", with: "password"
+      fill_in "user[password_confirmation]", with: "password"
+      click_on "Create User"
 
-      fill_in "/register[email]", with: "user@yahoo.com"
-      fill_in "/register[name]", with: "Tom Hanks"
-      fill_in "/register[phone_number]", with: "1234134134"
-      fill_in "/register[password]", with: "password"
-      fill_in "/register[password_confirmation]", with: "password"
-      click_on "Register Account"
-
-      expect(current_path).to eq("/dashboard")
-      expect(page).to have_content("Logged in as Tom Hanks")
-      expect(page).to have_content("This account has not yet been activated. Please check your email.")
+      expect(current_path).to eq("/users/#{User.last.id}")
+      expect(page).to have_content("Welcome, Tom Hanks")
+      expect(page).to have_content("Email: user@yahoo.com")
     end
 
 
     it "requires a unique email" do
+      visit "/"
 
+      click_link "Login"
+      click_link "Sign Up"
+      expect(current_path).to eq("/users/new")
+
+      fill_in "user[name]", with: "Tom Hanks"
+      fill_in "user[location]", with: "Hollywood"
+      fill_in "user[email]", with: "user@yahoo.com"
+      fill_in "user[password]", with: "password"
+      fill_in "user[password_confirmation]", with: "password"
+      click_on "Create User"
+      click_on "Logout"
+
+
+      click_link "Login"
+      click_link "Sign Up"
+      expect(current_path).to eq("/users/new")
+
+      fill_in "user[name]", with: "Tom Hanks"
+      fill_in "user[location]", with: "Hollywood"
+      fill_in "user[email]", with: "user@yahoo.com"
+      fill_in "user[password]", with: "password"
+      fill_in "user[password_confirmation]", with: "password"
+
+      expect(current_path).to eq("/users/new")
     end
   end
 end
