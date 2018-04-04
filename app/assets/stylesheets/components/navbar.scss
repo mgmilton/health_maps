@@ -3,6 +3,13 @@ $bgHighlight    : #abe3d2;
 $colDefault     : #ecf0f1;
 $colHighlight   : #dbffff;
 $dropDown       : false;
+
+.navbar-inverse .navbar-nav>li>a {
+  color: $colDefault;
+  &:hover, &:focus {
+    color: $colHighlight; }
+}
+
 .navbar {
   a {
     color: $colDefault;
@@ -131,7 +138,7 @@ $dropDown       : false;
 }
 .btn-gm:hover{
     color: #fff;
-    background-color:#496ebc
+    background-color:#496ebc;
 }
 .btn-tw{
     color: #fff;
@@ -140,14 +147,4 @@ $dropDown       : false;
 .btn-tw:hover{
     color: #fff;
     background-color:#59b5fa;
-}
-@media(max-width:768px){
-    #login-dp{
-        background-color: inherit;
-        color: #fff;
-    }
-    #login-dp .bottom{
-        background-color: inherit;
-        border-top:0 none;
-    }
 }
