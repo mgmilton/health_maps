@@ -27,9 +27,9 @@ describe "As a registered user" do
 
       fill_in "email", with: "fake email"
       fill_in "password", with: user.password
-      click_on "Log In"
+      click_on "Sign In"
 
-      expect(current_path).to eq("/")
+      expect(current_path).to eq("/login")
     end
   end
 end
