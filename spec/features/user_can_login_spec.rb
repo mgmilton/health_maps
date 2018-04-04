@@ -8,12 +8,12 @@ describe "As a registered user" do
 
       click_link "Login"
       fill_in "email", with: user.email
-      fill_in "password", with: user.password_digest
+      fill_in "password", with: user.password
       click_on "Sign In"
 
-      expect(current_path).to eq("/dashboard")
+      expect(current_path).to eq("/")
       expect(page).to have_content("Logged in as Mister Map")
-      click_on "Log Out"
+      click_on "Logout"
 
       expect(current_path).to eq("/")
     end

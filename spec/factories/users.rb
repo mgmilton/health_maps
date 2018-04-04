@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :user do
     email "map@maps.com"
     name "Mister Map"
-    password_digest "MyString"
+    password "MyString"
     location "Portland, OR"
   end
 end
