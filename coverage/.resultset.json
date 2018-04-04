@@ -1,12 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/mgmilton/turing/3module/health_maps/app/models/user.rb": [
-        1,
-        1,
-        1,
-        1,
-        1,
+      "/Users/mgmilton/turing/3module/health_maps/app/models/location.rb": [
         1,
         1,
         null
@@ -16,54 +11,14 @@
         1,
         null
       ],
-      "/Users/mgmilton/turing/3module/health_maps/app/controllers/welcome_controller.rb": [
-        1,
-        1,
-        null,
-        null
-      ],
-      "/Users/mgmilton/turing/3module/health_maps/app/controllers/application_controller.rb": [
+      "/Users/mgmilton/turing/3module/health_maps/app/models/user.rb": [
         1,
         1,
         1,
         1,
-        null,
-        1,
-        5,
-        null,
-        null,
-        null
-      ],
-      "/Users/mgmilton/turing/3module/health_maps/app/controllers/sessions_controller.rb": [
-        1,
-        1,
-        null,
-        null,
-        null,
-        1,
-        2,
-        2,
         1,
         1,
         1,
-        null,
-        1,
-        1,
-        null,
-        null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        null,
-        1,
-        3,
-        null,
-        null,
         null
       ],
       "/Users/mgmilton/turing/3module/health_maps/app/channels/application_cable/channel.rb": [
@@ -76,6 +31,62 @@
         0,
         0,
         0,
+        0
+      ],
+      "/Users/mgmilton/turing/3module/health_maps/app/controllers/application_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        null,
+        0
+      ],
+      "/Users/mgmilton/turing/3module/health_maps/app/controllers/locations_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        0,
+        null,
+        0
+      ],
+      "/Users/mgmilton/turing/3module/health_maps/app/controllers/sessions_controller.rb": [
+        0,
+        0,
+        null,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        0,
+        0,
+        0,
+        null,
         0
       ],
       "/Users/mgmilton/turing/3module/health_maps/app/controllers/users_controller.rb": [
@@ -105,6 +116,12 @@
         null,
         0
       ],
+      "/Users/mgmilton/turing/3module/health_maps/app/controllers/welcome_controller.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
       "/Users/mgmilton/turing/3module/health_maps/app/helpers/application_helper.rb": [
         0,
         0
@@ -120,6 +137,6 @@
         0
       ]
     },
-    "timestamp": 1522881708
+    "timestamp": 1522882333
   }
 }
