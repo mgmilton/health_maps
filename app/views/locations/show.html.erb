@@ -1,96 +1,23 @@
-<!DOCTYPE html>
-<html>
+<div class='sidebar'>
+  <div class='heading'>
+    <h3> information</h3>
+  </div>
+  <div id='selections' class='selection'>
+    <%= render partial: "selection" %>
+  </div>
+</div>
 
-  <head>
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
-    <style>
-    body {
-      color: #404040;
-      font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
-      margin: 0;
-      padding: 0;
-      -webkit-font-smoothing: antialiased;
-    }
+<div id='map' class='map pad2'>Map</div>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
+<script>
 
-    * {
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      box-sizing: border-box;
-    }
-
-    h1 {
-      font-size: 22px;
-      margin: 0;
-      font-weight: 400;
-      line-height: 20px;
-      padding: 20px 2px;
-    }
-
-    a {
-      color: #404040;
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: #101010;
-    }
-
-    .sidebar {
-      position: absolute;
-      width: 33.3333%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-      border-right: 1px solid rgba(0, 0, 0, 0.25);
-    }
-    .mapboxgl-ctrl-top-left {
-      top: 0;
-      left: 0;
-    }
-    .pad2 {
-      padding: 5px;
-    }
-
-    .map {
-      position: absolute;
-      left: 33.3333%;
-      width: 66.6666%;
-      padding-top: 30px;
-      top: 0;
-      bottom: 0;
-    }
-    </style>
-  </head>
-  <body>
-    <div class='sidebar'>
-      <div class='heading'>
-        <h3> information</h3>
-      </div>
-      <div id='selections' class='selection'>
-        <%= render partial: "selection" %>
-      </div>
-    </div>
-    <div id='map' class='map pad2'>Map</div>
-    <script>
-
-      mapboxgl.accessToken = 'pk.eyJ1IjoibWdtaWx0b24iLCJhIjoiY2pldm81anY4MG13aDJ5cGEza3hxcml1cSJ9.aU1ioXfQ5DPbyQKdcUdxoA';
-
-     // This adds the map to your page
-      var map = new mapboxgl.Map({
-        // container id specified in the HTML
-        container: 'map',
-        // style URL
-        style: 'mapbox://styles/mgmilton/cjfj0t3er6zo92rpa4dv54lpw',
-        // initial position in [long, lat] format
-        center: [-87.6298, 41.8781],
-        // initial zoom
-        zoom: 10
-      });
-      var nav = new mapboxgl.NavigationControl();
-      map.addControl(nav, 'bottom-right');
-    </script>
-  </body>
-
-</html>
+  mapboxgl.accessToken = 'pk.eyJ1IjoibWdtaWx0b24iLCJhIjoiY2pldm81anY4MG13aDJ5cGEza3hxcml1cSJ9.aU1ioXfQ5DPbyQKdcUdxoA';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mgmilton/cjfj0t3er6zo92rpa4dv54lpw',
+    center: [-87.6298, 41.8781],
+    zoom: 10
+  });
+  var nav = new mapboxgl.NavigationControl();
+  map.addControl(nav, 'bottom-right');
+</script>
