@@ -64,7 +64,9 @@
       <div class='heading'>
         <h3> information</h3>
       </div>
-      <div id='listings' class='listings'></div>
+      <div id='selections' class='selection'>
+        <%= render partial: "selection" %>
+      </div>
     </div>
     <div id='map' class='map pad2'>Map</div>
     <script>
@@ -78,9 +80,9 @@
         // style URL
         style: 'mapbox://styles/mgmilton/cjfj0t3er6zo92rpa4dv54lpw',
         // initial position in [long, lat] format
-        center: [-87.636339, 41.7463512],
+        center: [-87.6298, 41.8781],
         // initial zoom
-        zoom: 12
+        zoom: 10
       });
       map.addControl(new mapboxgl.NavigationControl({
         position:  'top-left'
