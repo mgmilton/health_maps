@@ -14,7 +14,7 @@ class LocationsController < ApplicationController
   end
 
   def show
-    @location = Location.find_by_slug(params[:slug])
+    @location = Location.find(params[:id])
   end
 
   private
