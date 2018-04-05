@@ -1,483 +1,483 @@
 require 'geokit'
-include GeoKit::Geocoders
+include Geokit::Geocoders
 
-LOCATIONS = [
-  "Birmingham, AL",
-  "Hoover, AL",
-  "Huntsville, AL",
-  "Mobile, AL",
-  "Montgomery, AL",
-  "Tuscaloosa, AL",
-  "Anchorage, AK",
-  "Avondale, AZ",
-  "Chandler, AZ",
-  "Gilbert, AZ",
-  "Glendale, AZ",
-  "Mesa, AZ",
-  "Peoria, AZ",
-  "Phoenix, AZ",
-  "Scottsdale, AZ",
-  "Surprise, AZ",
-  "Tempe, AZ",
-  "Tucson, AZ",
-  "Yuma, AZ, AK",
-  "Fayetteville, AK",
-  "Fort Smith, AK",
-  "Jonesboro, AK",
-  "Little Rock, AK",
-  "Springdale, AK, CA",
-  "Alameda, CA",
-  "Alhambra, CA",
-  "Anaheim, CA",
-  "Antioch, CA",
-  "Apple Valley, CA",
-  "Bakersfield, CA",
-  "Baldwin Park, CA",
-  "Bellflower, CA",
-  "Berkeley, CA",
-  "Buena Park, CA",
-  "Burbank, CA",
-  "Carlsbad, CA",
-  "Carson, CA",
-  "Chico, CA",
-  "Chino, CA",
-  "Chino Hills, CA",
-  "Chula Vista, CA",
-  "Citrus Heights, CA",
-  "Clovis, CA",
-  "Compton, CA",
-  "Concord, CA",
-  "Corona, CA",
-  "Costa Mesa, CA",
-  "Daly City, CA",
-  "Downey, CA",
-  "El Cajon, CA",
-  "Elk Grove, CA",
-  "El Monte, CA",
-  "Escondido, CA",
-  "Fairfield, CA",
-  "Folsom, CA",
-  "Fontana, CA",
-  "Fremont, CA",
-  "Fresno, CA",
-  "Fullerton, CA",
-  "Garden Grove, CA",
-  "Hawthorne, CA",
-  "Hayward, CA",
-  "Hemet, CA",
-  "Hesperia, CA",
-  "Huntington Beach, CA",
-  "Indio, CA",
-  "Inglewood, CA",
-  "Irvine, CA",
-  "Lake Forest, CA",
-  "Lakewood, CA",
-  "Lancaster, CA",
-  "Livermore, CA",
-  "Long Beach, CA",
-  "Los Angeles, CA",
-  "Lynwood, CA",
-  "Manteca, CA",
-  "Menifee, CA",
-  "Merced, CA",
-  "Milpitas, CA",
-  "Mission Viejo, CA",
-  "Modesto, CA",
-  "Moreno Valley, CA",
-  "Mountain View, CA",
-  "Murrieta, CA",
-  "Napa, CA",
-  "Newport Beach, CA",
-  "Norwalk, CA",
-  "Oakland, CA",
-  "Oceanside, CA",
-  "Ontario, CA",
-  "Orange, CA",
-  "Oxnard, CA",
-  "Palmdale, CA",
-  "Pasadena, CA",
-  "Perris, CA",
-  "Pleasanton, CA",
-  "Pomona, CA",
-  "Rancho Cucamonga, CA",
-  "Redding, CA",
-  "Redlands, CA",
-  "Redondo Beach, CA",
-  "Redwood City, CA",
-  "Rialto, CA",
-  "Richmond, CA",
-  "Riverside, CA",
-  "Roseville, CA",
-  "Sacramento, CA",
-  "Salinas, CA",
-  "San Bernardino, CA",
-  "San Diego, CA",
-  "San Buenaventura (Ventura), CA",
-  "San Francisco, CA",
-  "San Jose, CA",
-  "San Leandro, CA",
-  "San Marcos, CA",
-  "San Mateo, CA",
-  "San Ramon, CA",
-  "Santa Ana, CA",
-  "Santa Barbara, CA",
-  "Santa Clara, CA",
-  "Santa Clarita, CA",
-  "Santa Maria, CA",
-  "Santa Monica, CA",
-  "Santa Rosa, CA",
-  "Simi Valley, CA",
-  "South Gate, CA",
-  "Stockton, CA",
-  "Sunnyvale, CA",
-  "Temecula, CA",
-  "Thousand Oaks, CA",
-  "Torrance, CA",
-  "Tracy, CA",
-  "Turlock, CA",
-  "Tustin, CA",
-  "Union City, CA",
-  "Upland, CA",
-  "Vacaville, CA",
-  "Vallejo, CA",
-  "Victorville, CA",
-  "Visalia, CA",
-  "Vista, CA",
-  "West Covina, CA",
-  "Westminster, CA",
-  "Whittier, CA, CO",
-  "Arvada, CO",
-  "Aurora, CO",
-  "Boulder, CO",
-  "Centennial, CO",
-  "Colorado Springs, CO",
-  "Denver, CO",
-  "Fort Collins, CO",
-  "Greeley, CO",
-  "Longmont, CO",
-  "Loveland, CO",
-  "Pueblo, CO",
-  "Thornton, CO, CT",
-  "Bridgeport, CT",
-  "Danbury, CT",
-  "Hartford, CT",
-  "New Britain, CT",
-  "New Haven, CT",
-  "Stamford, CT",
-  "Waterbury, CT",
-  "Wilmington, DE",
-  "Washington, DC, FL",
-  "Boca Raton, FL",
-  "Boynton Beach, FL",
-  "Cape Coral, FL",
-  "Clearwater, FL",
-  "Coral Springs, FL",
-  "Davie, FL",
-  "Deerfield Beach, FL",
-  "Deltona, FL",
-  "Fort Lauderdale, FL",
-  "Gainesville, FL",
-  "Hialeah, FL",
-  "Hollywood, FL",
-  "Jacksonville, FL",
-  "Lakeland, FL",
-  "Largo, FL",
-  "Lauderhill, FL",
-  "Melbourne, FL",
-  "Miami, FL",
-  "Miami Beach, FL",
-  "Miami Gardens, FL",
-  "Miramar, FL",
-  "Orlando, FL",
-  "Palm Bay, FL",
-  "Palm Coast, FL",
-  "Pembroke Pines, FL",
-  "Plantation, FL",
-  "Pompano Beach, FL",
-  "Port St. Lucie, FL",
-  "St. Petersburg, FL",
-  "Sunrise, FL",
-  "Tallahassee, FL",
-  "Tampa, FL",
-  "West Palm Beach, FL",
-  "Albany, GA",
-  "Athens, GA",
-  "Atlanta, GA",
-  "Augusta, GA",
-  "Columbus, GA",
-  "Johns Creek, GA",
-  "Macon, GA",
-  "Roswell, GA",
-  "Sandy Springs, GA",
-  "Savannah, GA",
-  "Warner Robins, GA",
-  "Honolulu, HI",
-  "Boise City, ID",
-  "Meridian, ID",
-  "Nampa, ID",
-  "Arlington Heights, IL",
-  "Bloomington, IL",
-  "Bolingbrook, IL",
-  "Champaign, IL",
-  "Chicago, IL",
-  "Cicero, IL",
-  "Decatur, IL",
-  "Elgin, IL",
-  "Evanston, IL",
-  "Joliet, IL",
-  "Naperville, IL",
-  "Palatine, IL",
-  "Rockford, IL",
-  "Schaumburg, IL",
-  "Sioux City, IL",
-  "Springfield, IL",
-  "Waukegan, IL, ID",
-  "Carmel, ID",
-  "Evansville, ID",
-  "Fishers, ID",
-  "Fort Wayne, ID",
-  "Gary, ID",
-  "Hammond, ID",
-  "Indianapolis, ID",
-  "Lafayette, ID",
-  "Muncie, ID",
-  "South Bend, ID",
-  "Cedar Rapids, IA",
-  "Davenport, IA",
-  "Des Moines, IA",
-  "Iowa City, IA",
-  "Waterloo, IA",
-  "Kansas City",
-  "Lawrence, KY",
-  "Olathe, KY",
-  "Overland Park, KY",
-  "Topeka, KY",
-  "Wichita, KY",
-  "Lexington, KY",
-  "Louisville, KY",
-  "Baton Rouge, LA",
-  "Kenner, LA",
-  "Lake Charles, LA",
-  "New Orleans, LA",
-  "Shreveport, LA",
-  "Portland, ME",
-  "Baltimore, MD",
-  "Boston, MA",
-  "Brockton, MA",
-  "Cambridge, MA",
-  "Fall River, MA",
-  "Lowell, MA",
-  "Lynn, MA",
-  "New Bedford, MA",
-  "Newton, MA",
-  "Quincy, MA",
-  "Somerville, MA",
-  "Worcester, MA",
-  "Ann Arbor, MI",
-  "Dearborn, MI",
-  "Detroit, MI",
-  "Farmington Hills, MI",
-  "Flint, MI",
-  "Grand Rapids, MI",
-  "Kalamazoo, MI",
-  "Lansing, MI",
-  "Livonia, MI",
-  "Rochester Hills, MI",
-  "Southfield, MI",
-  "Sterling Heights, MI",
-  "Troy, MI",
-  "Warren, MI",
-  "Westland, MI",
-  "Wyoming, MI, MN",
-  "Brooklyn Park, MN",
-  "Duluth, MN",
-  "Minneapolis, MN",
-  "Plymouth, MN",
-  "Rochester, MN",
-  "St. Paul, MN",
-  "Gulfport, MI",
-  "Jackson, MI",
-  "Columbia, MO",
-  "Independence, MO",
-  "Lee's Summit, MO",
-  "O'Fallon, MO",
-  "St. Joseph, MO",
-  "St. Louis, MO",
-  "Billings, MT",
-  "Missoula, MT",
-  "Lincoln, NE",
-  "Omaha, NE",
-  "Henderson, NV",
-  "Las Vegas, NV",
-  "North Las Vegas, NV",
-  "Reno, NV",
-  "Sparks, NV",
-  "Manchester, NH",
-  "Nashua, NH",
-  "Camden, NJ",
-  "Clifton, NJ",
-  "Elizabeth, NJ",
-  "Jersey City, NJ",
-  "Newark, NJ",
-  "Passaic, NJ",
-  "Paterson, NJ",
-  "Trenton, NJ",
-  "Albuquerque, NM",
-  "Las Cruces, NM",
-  "Rio Rancho, NM",
-  "Santa Fe, NM",
-  "Buffalo, NY",
-  "Mount Vernon, NY",
-  "New Rochelle, NY",
-  "New York, NY",
-  "Schenectady, NY",
-  "Syracuse, NY",
-  "Yonkers, NY",
-  "Asheville, NC",
-  "Cary, NC",
-  "Charlotte, NC",
-  "Durham, NC",
-  "Gastonia, NC",
-  "Greensboro, NC",
-  "High Point, NC",
-  "Raleigh, NC",
-  "Greenville, NC",
-  "Fargo, ND",
-  "Winston-Salem, NC, OH",
-  "Akron, OH",
-  "Canton, OH",
-  "Cincinnati, OH",
-  "Cleveland, OH",
-  "Dayton, OH",
-  "Parma, OH",
-  "Toledo, OH",
-  "Youngstown, OH",
-  "Broken Arrow, OK",
-  "Edmond, OK",
-  "Lawton, OK",
-  "Norman, OK",
-  "Oklahoma City, OK",
-  "Tulsa, OK",
-  "Beaverton, OR",
-  "Bend, OR",
-  "Eugene, OR",
-  "Gresham, OR",
-  "Hillsboro, OR",
-  "Medford, OR",
-  "Salem, OR",
-  "Allentown, PA",
-  "Bethlehem, PA",
-  "Erie, PA",
-  "Philadelphia, PA",
-  "Pittsburgh, PA",
-  "Reading, PA",
-  "Scranton, PA",
-  "Cranston, RI",
-  "Pawtucket, RI",
-  "Providence, RI",
-  "Warwick, RI",
-  "Columbia, SC"
-  "Charleston, SC",
-  "Mount Pleasant, SC",
-  "Rock Hill, SC",
-  "North Charleston, SC",
-  "Rapid City, SD",
-  "Sioux Falls, SD",
-  "Chattanooga, TN",
-  "Clarksville, TN",
-  "Knoxville, TN",
-  "Memphis, TN",
-  "Nashville, TN",
-  "Murfreesboro, TN",
-  "Pearland, TX",
-  "Plano, TX",
-  "Murfreesboro, TX",
-  "Nashville, TX",
-  "Abilene, TX",
-  "Allen, TX",
-  "Amarillo, TX",
-  "Arlington, TX",
-  "Austin, TX",
-  "Baytown, TX",
-  "Beaumont, TX",
-  "Brownsville, TX",
-  "Bryan, TX",
-  "Carrollton, TX",
-  "College Station, TX",
-  "Corpus Christi, TX",
-  "Dallas, TX",
-  "Denton, TX",
-  "Edinburg, TX",
-  "El Paso, TX",
-  "Fort Worth, TX",
-  "Frisco, TX",
-  "Garland, TX",
-  "Grand Prairie, TX",
-  "Houston, TX",
-  "Irving, TX",
-  "Killeen, TX",
-  "Laredo, TX",
-  "League City, TX",
-  "Lewisville, TX",
-  "Longview, TX",
-  "Lubbock, TX",
-  "McAllen, TX",
-  "McKinney, TX",
-  "Mesquite, TX",
-  "Midland, TX",
-  "Mission, TX",
-  "Missouri City, TX",
-  "Odessa, TX",
-  "Pharr, TX",
-  "Richardson, TX",
-  "Round Rock, TX",
-  "San Angelo, TX",
-  "San Antonio, TX",
-  "Sugar Land, TX",
-  "Tyler, TX",
-  "Waco, TX",
-  "Wichita Falls, TX",
-  "Layton, UT",
-  "Ogden, UT",
-  "Orem, UT",
-  "Provo, UT",
-  "St. George, UT",
-  "Salt Lake City, UT",
-  "Sandy, UT",
-  "West Jordan, UT",
-  "West Valley City, UT",
-  "Burlington, VT",
-  "Alexandria, VA",
-  "Chesapeake, VA",
-  "Hampton, VA",
-  "Lynchburg, VA",
-  "Newport News, VA",
-  "Norfolk, VA",
-  "Portsmouth, VA",
-  "Roanoke, VA",
-  "Suffolk, VA",
-  "Virginia Beach, VA",
-  "Auburn, WA",
-  "Bellevue, WA",
-  "Bellingham, WA",
-  "Everett, WA",
-  "Federal Way, WA",
-  "Kennewick, WA",
-  "Kent, WA",
-  "Renton, WA",
-  "Seattle, WA",
-  "Spokane, WA",
-  "Spokane Valley, WA",
-  "Tacoma, WA",
-  "Vancouver, WA",
-  "Yakima, WA",
-  "Charleston, WV",
-  "Appleton, WI",
-  "Green Bay, WI",
-  "Kenosha, WI",
-  "Madison, WI",
-  "Milwaukee, WI",
-  "Racine, WI",
-  "Waukesha, WI",
-  "Cheyenne, WY",
-]
+locations = {
+  "Birmingham, AL" => [-86.802489, 33.5206608],
+  "Hoover, AL" => [-86.8113781, 33.4053867],
+  "Huntsville, AL" => [-86.5861037, 34.7303688],
+  "Mobile, AL" => [-88.0398912, 30.6953657],
+  "Montgomery, AL" => [-86.2999689, 32.3668052],
+  "Tuscaloosa, AL" => [-87.569173499, 33.2098407],
+  "Anchorage, AK" => [-149.9002778, 61.2180556],
+  "Avondale, AZ" => [-112.3496021, 33.4355977],
+  "Chandler, AZ" => [-111.8412502, 33.3061605],
+  "Gilbert, AZ" => [-111.789027, 33.3528264],
+  "Glendale, AZ" => [-112.228846177, 33.5433493074],
+  "Mesa, AZ" => [-111.779777411, 33.3863226857],
+  "Peoria, AZ" => [-112.213314494, 33.6182853976],
+  "Phoenix, AZ" => [-112.06981438, 33.3363887826],
+  "Scottsdale, AZ" => [-111.9260519, 33.4941704],
+  "Surprise, AZ"  [-112.350708498, 33.6163832621]
+  "Tempe, AZ" => [-111.95012962, 33.341857302]
+  "Tucson, AZ" =>
+  "Yuma, AZ, AK" =>
+  "Fayetteville, AK" =>
+  "Fort Smith, AK" =>
+  "Jonesboro, AK" =>
+  "Little Rock, AK" =>
+  "Springdale, AK, CA" =>
+  "Alameda, CA" =>
+  "Alhambra, CA" =>
+  "Anaheim, CA" =>
+  "Antioch, CA" =>
+  "Apple Valley, CA" =>
+  "Bakersfield, CA" =>
+  "Baldwin Park, CA" =>
+  "Bellflower, CA" =>
+  "Berkeley, CA" =>
+  "Buena Park, CA" =>
+  "Burbank, CA" =>
+  "Carlsbad, CA" =>
+  "Carson, CA" =>
+  "Chico, CA" =>
+  "Chino, CA" =>
+  "Chino Hills, CA" =>
+  "Chula Vista, CA" =>
+  "Citrus Heights, CA" =>
+  "Clovis, CA" =>
+  "Compton, CA" =>
+  "Concord, CA" =>
+  "Corona, CA" =>
+  "Costa Mesa, CA" =>
+  "Daly City, CA" =>
+  "Downey, CA" =>
+  "El Cajon, CA" =>
+  "Elk Grove, CA" =>
+  "El Monte, CA" =>
+  "Escondido, CA" =>
+  "Fairfield, CA" =>
+  "Folsom, CA" =>
+  "Fontana, CA" =>
+  "Fremont, CA" =>
+  "Fresno, CA" =>
+  "Fullerton, CA" =>
+  "Garden Grove, CA" =>
+  "Hawthorne, CA" =>
+  "Hayward, CA" =>
+  "Hemet, CA" =>
+  "Hesperia, CA" =>
+  "Huntington Beach, CA" =>
+  "Indio, CA" =>
+  "Inglewood, CA" =>
+  "Irvine, CA" =>
+  "Lake Forest, CA" =>
+  "Lakewood, CA" =>
+  "Lancaster, CA" =>
+  "Livermore, CA" =>
+  "Long Beach, CA" =>
+  "Los Angeles, CA" =>
+  "Lynwood, CA" =>
+  "Manteca, CA" =>
+  "Menifee, CA" =>
+  "Merced, CA" =>
+  "Milpitas, CA" =>
+  "Mission Viejo, CA" =>
+  "Modesto, CA" =>
+  "Moreno Valley, CA" =>
+  "Mountain View, CA" =>
+  "Murrieta, CA" =>
+  "Napa, CA" =>
+  "Newport Beach, CA" =>
+  "Norwalk, CA" =>
+  "Oakland, CA" =>
+  "Oceanside, CA" =>
+  "Ontario, CA" =>
+  "Orange, CA" =>
+  "Oxnard, CA" =>
+  "Palmdale, CA" =>
+  "Pasadena, CA" =>
+  "Perris, CA" =>
+  "Pleasanton, CA" =>
+  "Pomona, CA" =>
+  "Rancho Cucamonga, CA" =>
+  "Redding, CA" =>
+  "Redlands, CA" =>
+  "Redondo Beach, CA" =>
+  "Redwood City, CA" =>
+  "Rialto, CA" =>
+  "Richmond, CA" =>
+  "Riverside, CA" =>
+  "Roseville, CA" =>
+  "Sacramento, CA" =>
+  "Salinas, CA" =>
+  "San Bernardino, CA" =>
+  "San Diego, CA" =>
+  "San Buenaventura (Ventura), CA" =>
+  "San Francisco, CA" =>
+  "San Jose, CA" =>
+  "San Leandro, CA" =>
+  "San Marcos, CA" =>
+  "San Mateo, CA" =>
+  "San Ramon, CA" =>
+  "Santa Ana, CA" =>
+  "Santa Barbara, CA" =>
+  "Santa Clara, CA" =>
+  "Santa Clarita, CA" =>
+  "Santa Maria, CA" =>
+  "Santa Monica, CA" =>
+  "Santa Rosa, CA" =>
+  "Simi Valley, CA" =>
+  "South Gate, CA" =>
+  "Stockton, CA" =>
+  "Sunnyvale, CA" =>
+  "Temecula, CA" =>
+  "Thousand Oaks, CA" =>
+  "Torrance, CA" =>
+  "Tracy, CA" =>
+  "Turlock, CA" =>
+  "Tustin, CA" =>
+  "Union City, CA" =>
+  "Upland, CA" =>
+  "Vacaville, CA" =>
+  "Vallejo, CA" =>
+  "Victorville, CA" =>
+  "Visalia, CA" =>
+  "Vista, CA" =>
+  "West Covina, CA" =>
+  "Westminster, CA" =>
+  "Whittier, CA, CO" =>
+  "Arvada, CO" =>
+  "Aurora, CO" =>
+  "Boulder, CO" =>
+  "Centennial, CO" =>
+  "Colorado Springs, CO" =>
+  "Denver, CO" =>
+  "Fort Collins, CO" =>
+  "Greeley, CO" =>
+  "Longmont, CO" =>
+  "Loveland, CO" =>
+  "Pueblo, CO" =>
+  "Thornton, CO, CT" =>
+  "Bridgeport, CT" =>
+  "Danbury, CT" =>
+  "Hartford, CT" =>
+  "New Britain, CT" =>
+  "New Haven, CT" =>
+  "Stamford, CT" =>
+  "Waterbury, CT" =>
+  "Wilmington, DE" =>
+  "Washington, DC, FL" =>
+  "Boca Raton, FL" =>
+  "Boynton Beach, FL" =>
+  "Cape Coral, FL" =>
+  "Clearwater, FL" =>
+  "Coral Springs, FL" =>
+  "Davie, FL" =>
+  "Deerfield Beach, FL" =>
+  "Deltona, FL" =>
+  "Fort Lauderdale, FL" =>
+  "Gainesville, FL" =>
+  "Hialeah, FL" =>
+  "Hollywood, FL" =>
+  "Jacksonville, FL" =>
+  "Lakeland, FL" =>
+  "Largo, FL" =>
+  "Lauderhill, FL" =>
+  "Melbourne, FL" =>
+  "Miami, FL" =>
+  "Miami Beach, FL" =>
+  "Miami Gardens, FL" =>
+  "Miramar, FL" =>
+  "Orlando, FL" =>
+  "Palm Bay, FL" =>
+  "Palm Coast, FL" =>
+  "Pembroke Pines, FL" =>
+  "Plantation, FL" =>
+  "Pompano Beach, FL" =>
+  "Port St. Lucie, FL" =>
+  "St. Petersburg, FL" =>
+  "Sunrise, FL" =>
+  "Tallahassee, FL" =>
+  "Tampa, FL" =>
+  "West Palm Beach, FL" =>
+  "Albany, GA" =>
+  "Athens, GA" =>
+  "Atlanta, GA" =>
+  "Augusta, GA" =>
+  "Columbus, GA" =>
+  "Johns Creek, GA" =>
+  "Macon, GA" =>
+  "Roswell, GA" =>
+  "Sandy Springs, GA" =>
+  "Savannah, GA" =>
+  "Warner Robins, GA" =>
+  "Honolulu, HI" =>
+  "Boise City, ID" =>
+  "Meridian, ID" =>
+  "Nampa, ID" =>
+  "Arlington Heights, IL" =>
+  "Bloomington, IL" =>
+  "Bolingbrook, IL" =>
+  "Champaign, IL" =>
+  "Chicago, IL" =>
+  "Cicero, IL" =>
+  "Decatur, IL" =>
+  "Elgin, IL" =>
+  "Evanston, IL" =>
+  "Joliet, IL" =>
+  "Naperville, IL" =>
+  "Palatine, IL" =>
+  "Rockford, IL" =>
+  "Schaumburg, IL" =>
+  "Sioux City, IL" =>
+  "Springfield, IL" =>
+  "Waukegan, IL, ID" =>
+  "Carmel, ID" =>
+  "Evansville, ID" =>
+  "Fishers, ID" =>
+  "Fort Wayne, ID" =>
+  "Gary, ID" =>
+  "Hammond, ID" =>
+  "Indianapolis, ID" =>
+  "Lafayette, ID" =>
+  "Muncie, ID" =>
+  "South Bend, ID" =>
+  "Cedar Rapids, IA" =>
+  "Davenport, IA" =>
+  "Des Moines, IA" =>
+  "Iowa City, IA" =>
+  "Waterloo, IA" =>
+  "Kansas City" =>
+  "Lawrence, KY" =>
+  "Olathe, KY" =>
+  "Overland Park, KY" =>
+  "Topeka, KY" =>
+  "Wichita, KY" =>
+  "Lexington, KY" =>
+  "Louisville, KY" =>
+  "Baton Rouge, LA" =>
+  "Kenner, LA" =>
+  "Lake Charles, LA" =>
+  "New Orleans, LA" =>
+  "Shreveport, LA" =>
+  "Portland, ME" =>
+  "Baltimore, MD" =>
+  "Boston, MA" =>
+  "Brockton, MA" =>
+  "Cambridge, MA" =>
+  "Fall River, MA" =>
+  "Lowell, MA" =>
+  "Lynn, MA" =>
+  "New Bedford, MA" =>
+  "Newton, MA" =>
+  "Quincy, MA" =>
+  "Somerville, MA" =>
+  "Worcester, MA" =>
+  "Ann Arbor, MI" =>
+  "Dearborn, MI" =>
+  "Detroit, MI" =>
+  "Farmington Hills, MI" =>
+  "Flint, MI" =>
+  "Grand Rapids, MI" =>
+  "Kalamazoo, MI" =>
+  "Lansing, MI" =>
+  "Livonia, MI" =>
+  "Rochester Hills, MI" =>
+  "Southfield, MI" =>
+  "Sterling Heights, MI" =>
+  "Troy, MI" =>
+  "Warren, MI" =>
+  "Westland, MI" =>
+  "Wyoming, MI, MN" =>
+  "Brooklyn Park, MN" =>
+  "Duluth, MN" =>
+  "Minneapolis, MN" =>
+  "Plymouth, MN" =>
+  "Rochester, MN" =>
+  "St. Paul, MN" =>
+  "Gulfport, MI" =>
+  "Jackson, MI" =>
+  "Columbia, MO" =>
+  "Independence, MO" =>
+  "Lee's Summit, MO" =>
+  "O'Fallon, MO" =>
+  "St. Joseph, MO" =>
+  "St. Louis, MO" =>
+  "Billings, MT" =>
+  "Missoula, MT" =>
+  "Lincoln, NE" =>
+  "Omaha, NE" =>
+  "Henderson, NV" =>
+  "Las Vegas, NV" =>
+  "North Las Vegas, NV" =>
+  "Reno, NV" =>
+  "Sparks, NV" =>
+  "Manchester, NH" =>
+  "Nashua, NH" =>
+  "Camden, NJ" =>
+  "Clifton, NJ" =>
+  "Elizabeth, NJ" =>
+  "Jersey City, NJ" =>
+  "Newark, NJ" =>
+  "Passaic, NJ" =>
+  "Paterson, NJ" =>
+  "Trenton, NJ" =>
+  "Albuquerque, NM" =>
+  "Las Cruces, NM" =>
+  "Rio Rancho, NM" =>
+  "Santa Fe, NM" =>
+  "Buffalo, NY" =>
+  "Mount Vernon, NY" =>
+  "New Rochelle, NY" =>
+  "New York, NY" =>
+  "Schenectady, NY" =>
+  "Syracuse, NY" =>
+  "Yonkers, NY" =>
+  "Asheville, NC" =>
+  "Cary, NC" =>
+  "Charlotte, NC" =>
+  "Durham, NC" =>
+  "Gastonia, NC" =>
+  "Greensboro, NC" =>
+  "High Point, NC" =>
+  "Raleigh, NC" =>
+  "Greenville, NC" =>
+  "Fargo, ND" =>
+  "Winston-Salem, NC, OH" =>
+  "Akron, OH" =>
+  "Canton, OH" =>
+  "Cincinnati, OH" =>
+  "Cleveland, OH" =>
+  "Dayton, OH" =>
+  "Parma, OH" =>
+  "Toledo, OH" =>
+  "Youngstown, OH" =>
+  "Broken Arrow, OK" =>
+  "Edmond, OK" =>
+  "Lawton, OK" =>
+  "Norman, OK" =>
+  "Oklahoma City, OK" =>
+  "Tulsa, OK" =>
+  "Beaverton, OR" =>
+  "Bend, OR" =>
+  "Eugene, OR" =>
+  "Gresham, OR" =>
+  "Hillsboro, OR" =>
+  "Medford, OR" =>
+  "Salem, OR" =>
+  "Allentown, PA" =>
+  "Bethlehem, PA" =>
+  "Erie, PA" =>
+  "Philadelphia, PA" =>
+  "Pittsburgh, PA" =>
+  "Reading, PA" =>
+  "Scranton, PA" =>
+  "Cranston, RI" =>
+  "Pawtucket, RI" =>
+  "Providence, RI" =>
+  "Warwick, RI" =>
+  "Columbia, SC" =>
+  "Charleston, SC" =>
+  "Mount Pleasant, SC" =>
+  "Rock Hill, SC" =>
+  "North Charleston, SC" =>
+  "Rapid City, SD" =>
+  "Sioux Falls, SD" =>
+  "Chattanooga, TN" =>
+  "Clarksville, TN" =>
+  "Knoxville, TN" =>
+  "Memphis, TN" =>
+  "Nashville, TN" =>
+  "Murfreesboro, TN" =>
+  "Pearland, TX" =>
+  "Plano, TX" =>
+  "Murfreesboro, TX" =>
+  "Nashville, TX" =>
+  "Abilene, TX" =>
+  "Allen, TX" =>
+  "Amarillo, TX" =>
+  "Arlington, TX" =>
+  "Austin, TX" =>
+  "Baytown, TX" =>
+  "Beaumont, TX" =>
+  "Brownsville, TX" =>
+  "Bryan, TX" =>
+  "Carrollton, TX" =>
+  "College Station, TX" =>
+  "Corpus Christi, TX" =>
+  "Dallas, TX" =>
+  "Denton, TX" =>
+  "Edinburg, TX" =>
+  "El Paso, TX" =>
+  "Fort Worth, TX" =>
+  "Frisco, TX" =>
+  "Garland, TX" =>
+  "Grand Prairie, TX" =>
+  "Houston, TX" =>
+  "Irving, TX" =>
+  "Killeen, TX" =>
+  "Laredo, TX" =>
+  "League City, TX" =>
+  "Lewisville, TX" =>
+  "Longview, TX" =>
+  "Lubbock, TX" =>
+  "McAllen, TX" =>
+  "McKinney, TX" =>
+  "Mesquite, TX" =>
+  "Midland, TX" =>
+  "Mission, TX" =>
+  "Missouri City, TX" =>
+  "Odessa, TX" =>
+  "Pharr, TX" =>
+  "Richardson, TX" =>
+  "Round Rock, TX" =>
+  "San Angelo, TX" =>
+  "San Antonio, TX" =>
+  "Sugar Land, TX" =>
+  "Tyler, TX" =>
+  "Waco, TX" =>
+  "Wichita Falls, TX" =>
+  "Layton, UT" =>
+  "Ogden, UT" =>
+  "Orem, UT" =>
+  "Provo, UT" =>
+  "St. George, UT" =>
+  "Salt Lake City, UT" =>
+  "Sandy, UT" =>
+  "West Jordan, UT" =>
+  "West Valley City, UT" =>
+  "Burlington, VT" =>
+  "Alexandria, VA" =>
+  "Chesapeake, VA" =>
+  "Hampton, VA" =>
+  "Lynchburg, VA" =>
+  "Newport News, VA" =>
+  "Norfolk, VA" =>
+  "Portsmouth, VA" =>
+  "Roanoke, VA" =>
+  "Suffolk, VA" =>
+  "Virginia Beach, VA" =>
+  "Auburn, WA" =>
+  "Bellevue, WA" =>
+  "Bellingham, WA" =>
+  "Everett, WA" =>
+  "Federal Way, WA" =>
+  "Kennewick, WA" =>
+  "Kent, WA" => [-117.4260465, 47.6587802]
+  "Renton, WA" => [-117.4260465, 47.6587802]
+  "Seattle, WA" => [-117.4260465, 47.6587802]
+  "Spokane, WA" => [-117.4260465, 47.6587802]
+  "Spokane Valley, WA" => [-117.4260465, 47.6587802]
+  "Tacoma, WA" => [-117.4260465, 47.6587802]
+  "Vancouver, WA" => [-122.598539476, 45.6357172365],
+  "Yakima, WA" => [-120.5058987, 46.6020711],
+  "Charleston, WV" => [-88.41538469999999, 44.2619309],
+  "Appleton, WI" => [-88.41538469999999, 44.2619309],
+  "Green Bay, WI" => [-88.0132958, 44.5133188],
+  "Kenosha, WI" => [-87.82118539999999, 42.5847425],
+  "Madison, WI" => [-89.4012302, 43.0730517],
+  "Milwaukee, WI" => [-87.9064736, 43.0389025],
+  "Racine, WI" => [-87.8123847764, 42.7572572814]
+  "Waukesha, WI" => [-88.2314813, 43.0116784],
+  "Cheyenne, WY" => [-104.777631834, 41.1585056144]
+}
