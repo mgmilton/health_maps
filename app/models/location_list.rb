@@ -325,82 +325,80 @@ locations = {
   "Albuquerque, NM" =>
   "Las Cruces, NM" =>
   "Rio Rancho, NM" =>
-  "Santa Fe, NM" =>
-  "Buffalo, NY" =>
-  "Mount Vernon, NY" =>
-  "New Rochelle, NY" =>
-  "New York, NY" =>
-  "Schenectady, NY" =>
-  "Syracuse, NY" =>
-  "Yonkers, NY" =>
-  "Asheville, NC" =>
-  "Cary, NC" =>
-  "Charlotte, NC" =>
-  "Durham, NC" =>
-  "Gastonia, NC" =>
-  "Greensboro, NC" =>
-  "High Point, NC" =>
-  "Raleigh, NC" =>
-  "Greenville, NC" =>
-  "Fargo, ND" =>
-  "Winston-Salem, NC, OH" =>
-  "Akron, OH" =>
-  "Canton, OH" =>
-  "Cincinnati, OH" =>
-  "Cleveland, OH" =>
-  "Dayton, OH" =>
-  "Parma, OH" =>
-  "Toledo, OH" =>
-  "Youngstown, OH" =>
-  "Broken Arrow, OK" =>
-  "Edmond, OK" =>
-  "Lawton, OK" =>
-  "Norman, OK" =>
-  "Oklahoma City, OK" =>
-  "Tulsa, OK" =>
-  "Beaverton, OR" =>
-  "Bend, OR" =>
-  "Eugene, OR" =>
-  "Gresham, OR" =>
-  "Hillsboro, OR" =>
-  "Medford, OR" =>
-  "Salem, OR" =>
-  "Allentown, PA" =>
-  "Bethlehem, PA" =>
-  "Erie, PA" =>
-  "Philadelphia, PA" =>
-  "Pittsburgh, PA" =>
-  "Reading, PA" =>
-  "Scranton, PA" =>
-  "Cranston, RI" =>
-  "Pawtucket, RI" =>
-  "Providence, RI" =>
-  "Warwick, RI" =>
-  "Columbia, SC" =>
-  "Charleston, SC" =>
-  "Mount Pleasant, SC" =>
-  "Rock Hill, SC" =>
-  "North Charleston, SC" =>
-  "Rapid City, SD" =>
-  "Sioux Falls, SD" =>
-  "Chattanooga, TN" =>
-  "Clarksville, TN" =>
-  "Knoxville, TN" =>
-  "Memphis, TN" =>
-  "Nashville, TN" =>
-  "Murfreesboro, TN" =>
-  "Pearland, TX" =>
-  "Plano, TX" =>
-  "Murfreesboro, TX" =>
-  "Nashville, TX" =>
-  "Abilene, TX" =>
-  "Allen, TX" =>
-  "Amarillo, TX" =>
-  "Arlington, TX" =>
-  "Austin, TX" =>
-  "Baytown, TX" =>
+  "Santa Fe, NM",
+  "Buffalo, NY",
+  "Mount Vernon, NY",
+  "New Rochelle, NY",
+  "New York, NY",
+  "Schenectady, NY",
+  "Syracuse, NY",
+  "Yonkers, NY",
+  "Asheville, NC",
+  "Cary, NC",
+  "Charlotte, NC",
+  "Durham, NC",
+  "Gastonia, NC",
+  "Greensboro, NC",
+  "High Point, NC",
+  "Raleigh, NC",
+  "Greenville, NC",
+  "Fargo, ND",
+  "Winston-Salem, NC, OH",
+  "Akron, OH",
+  "Canton, OH",
+  "Cincinnati, OH",
+  "Cleveland, OH",
+  "Dayton, OH",
+  "Parma, OH",
+  "Toledo, OH",
+  "Youngstown, OH",
+  "Broken Arrow, OK",
+  "Edmond, OK",
+  "Lawton, OK",
+  "Norman, OK",
+  "Oklahoma City, OK",
+  "Tulsa, OK",
+  "Beaverton, OR",
+  "Bend, OR",
+  "Eugene, OR",
+  "Gresham, OR",
+  "Hillsboro, OR",
+  "Medford, OR",
+  "Salem, OR",
+  "Allentown, PA" => [-75.4494513428, 40.5924054515],
+  "Bethlehem, PA" => [-75.3617861524, 40.6291493135],
+  "Erie, PA" => [-80.0873089965, 42.1007286233],
+  "Philadelphia, PA" => [-75.1569774999, 39.9553999018],
+  "Pittsburgh, PA" => [-79.9021192288, 40.4516625802],
+  "Reading, PA" => [-75.9268747, 40.3356483],
+  "Scranton, PA" => [-75.66241219999999, 41.408969],
+  "Cranston, RI" =>  [-71.4372796, 41.7798226],
+  "Pawtucket, RI" => [-71.38255579999999, 41.878711],
+  "Providence, RI" => [-71.4128343, 41.8239891],
+  "Warwick, RI" => [-71.4099359178, 41.7221732779]
+  "Columbia, SC" => [-80.8273004322, 34.117996938]
+  "Charleston, SC" => [-79.93105120000001, 32.7764749],
+  "Mount Pleasant, SC" => [-79.82842579999999, 32.8323225],
+  "Rock Hill, SC" => [-81.0249178286, 34.9403611496]
+  "North Charleston, SC" => [-79.9748103, 32.8546197],
+  "Rapid City, SD" => [-103.164928143, 44.0476131873],
+  "Sioux Falls, SD" => [-96.73110340000001, 43.5445959],
+  "Chattanooga, TN" => [-85.2164930176, 35.0949695099],
+  "Clarksville, TN" => [-87.3594528, 36.5297706],
+  "Knoxville, TN" => [-84.0146657626, 35.9123518408],
+  "Memphis, TN" =>  [-90.0489801, 35.1495343],
+  "Nashville, TN" => [-86.6254409227, 36.1457359079],
+  "Murfreesboro, TN" => [-86.39027, 35.8456213],
+  "Pearland, TX" =>  [-95.2860474, 29.5635666],
+  "Plano, TX" => [-96.6988856, 33.0198431],
+  "Abilene, TX" => [-99.8094542963, 32.4555700974]
+  "Allen, TX" => [-96.67055030000002, 33.1031744],
+  "Amarillo, TX" => [-101.879917865, 35.1592582432]
+  "Arlington, TX" => [-97.10806559999999, 32.735687],
+  "Austin, TX" => [-97.7430608, 30.267153],
+  "Baytown, TX" => [-94.97742740000001, 29.7355047],
   "Beaumont, TX" => [-94.1265562, 30.080174],
-  "Brownsville, TX" => [-97.4976232498, 25.8955374296]
+  "Brownsville, TX" => [-97.4976232498, 25.8955374296],
   "Bryan, TX" => [-96.3699632, 30.6743643],
   "Carrollton, TX" => [-96.8899636, 32.9756415],
   "College Station, TX" => [-96.3344068, 30.627977],
