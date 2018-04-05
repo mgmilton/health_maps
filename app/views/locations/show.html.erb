@@ -15,7 +15,7 @@
   var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mgmilton/cjfj0t3er6zo92rpa4dv54lpw',
-    center: [-121.8374777, 39.7284944],
+    center: <%= Location.locations[@location.name] %>,
     zoom: 10
   });
   var nav = new mapboxgl.NavigationControl();
