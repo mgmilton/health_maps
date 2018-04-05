@@ -478,3 +478,7 @@ locations = {
   "Waukesha, WI" => [-88.2314813, 43.0116784],
   "Cheyenne, WY" => [-104.777631834, 41.1585056144]
 }
+
+locations.each do |key, value|
+  Location.create!(name: key.split(", ").first, state: key.split(", ").second, coordinates: value)
+end
