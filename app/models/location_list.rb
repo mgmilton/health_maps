@@ -325,46 +325,46 @@ locations = {
   "Albuquerque, NM" =>
   "Las Cruces, NM" =>
   "Rio Rancho, NM" =>
-  "Santa Fe, NM",
-  "Buffalo, NY",
-  "Mount Vernon, NY",
-  "New Rochelle, NY",
-  "New York, NY",
-  "Schenectady, NY",
-  "Syracuse, NY",
-  "Yonkers, NY",
-  "Asheville, NC",
-  "Cary, NC",
-  "Charlotte, NC",
-  "Durham, NC",
-  "Gastonia, NC",
-  "Greensboro, NC",
-  "High Point, NC",
-  "Raleigh, NC",
-  "Greenville, NC",
-  "Fargo, ND",
-  "Winston-Salem, NC, OH",
-  "Akron, OH",
-  "Canton, OH",
-  "Cincinnati, OH",
-  "Cleveland, OH",
-  "Dayton, OH",
-  "Parma, OH",
-  "Toledo, OH",
-  "Youngstown, OH",
-  "Broken Arrow, OK",
-  "Edmond, OK",
-  "Lawton, OK",
-  "Norman, OK",
-  "Oklahoma City, OK",
-  "Tulsa, OK",
-  "Beaverton, OR",
-  "Bend, OR",
-  "Eugene, OR",
-  "Gresham, OR",
-  "Hillsboro, OR",
-  "Medford, OR",
-  "Salem, OR",
+  "Santa Fe, NM" => [-105.937799, 35.6869752],
+  "Buffalo, NY" => [-78.8783689, 42.88644679999999],
+  "Mount Vernon, NY" =>
+  "New Rochelle, NY" =>
+  "New York, NY" => [-74.0059728, 40.7127753],
+  "Schenectady, NY" =>
+  "Syracuse, NY" => [-76.14742439999999, 43.0481221],
+  "Yonkers, NY" => [-73.89874689999999, 40.9312099],
+  "Asheville, NC" => [-82.5514869, 35.5950581],
+  "Cary, NC" =>
+  "Charlotte, NC" => [-80.8431267, 35.2270869],
+  "Durham, NC" => [-78.898619, 35.9940329],
+  "Gastonia, NC" => [-81.18730049999999, 35.262082],
+  "Greensboro, NC" => [-80.0053176, 35.9556923],
+  "High Point, NC" =>
+  "Raleigh, NC" =>
+  "Greenville, NC" =>
+  "Fargo, ND" =>
+  "Winston-Salem, NC," => [-80.244216, 36.09985959999999],
+  "Akron, OH" => [-81.51900529999999, 41.0814447],
+  "Canton, OH" => [-81.378447, 40.79894729999999],
+  "Cincinnati, OH" =>
+  "Cleveland, OH" =>
+  "Dayton, OH" => [-84.1916069, 39.7589478],
+  "Parma, OH" =>
+  "Toledo, OH" =>
+  "Youngstown, OH" =>
+  "Broken Arrow, OK" =>
+  "Edmond, OK" =>
+  "Lawton, OK" =>
+  "Norman, OK" => [-97.4394777, 35.2225668],
+  "Oklahoma City, OK" => [-97.6295728449, 35.5873526549]
+  "Tulsa, OK" =>  [-95.99277500000001, 36.1539816],
+  "Beaverton, OR" => [-122.7774259, 45.4620067956]
+  "Bend, OR" => [-121.335747683, 44.0221665871]
+  "Eugene, OR" => [-123.085181077, 44.0449020539],
+  "Gresham, OR" => [-122.431892485, 45.5033341519],
+  "Hillsboro, OR" =>  [-122.989827, 45.5228939],
+  "Medford, OR" => [-122.77917433, 42.3312912302]
+  "Salem, OR" => [-123.037827895, 44.9224114187]
   "Allentown, PA" => [-75.4494513428, 40.5924054515],
   "Bethlehem, PA" => [-75.3617861524, 40.6291493135],
   "Erie, PA" => [-80.0873089965, 42.1007286233],
