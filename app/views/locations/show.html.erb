@@ -45,7 +45,10 @@
       overflow: hidden;
       border-right: 1px solid rgba(0, 0, 0, 0.25);
     }
-
+    .mapboxgl-ctrl-top-left {
+      top: 0;
+      left: 0;
+    }
     .pad2 {
       padding: 5px;
     }
@@ -54,6 +57,7 @@
       position: absolute;
       left: 33.3333%;
       width: 66.6666%;
+      padding-top: 30px;
       top: 0;
       bottom: 0;
     }
@@ -84,9 +88,8 @@
         // initial zoom
         zoom: 10
       });
-      map.addControl(new mapboxgl.NavigationControl({
-        position:  'top-left'
-        }));
+      var nav = new mapboxgl.NavigationControl();
+      map.addControl(nav, 'bottom-right');
     </script>
   </body>
 
