@@ -24,20 +24,20 @@
   map.on('load', function (e) {
     // Add the data to your map as a layer
     map.addLayer({
-      id: 'blood pressure',
-      type: 'fill',
+      id: '500 Cities Tracts',
+      type: 'circle',
       source: {
         'type': 'geojson',
         'data': url
       },
       paint: {
-        'fill-color': {
+        'circle-color': {
          type: "categorical",
          property: 'data_value',
          stops: [["22.8", '#3BB3C3'], ["26.2", '#3BB3C3']]
        }
         }
-      });
+      }, 'waterway-label');
     });
   var nav = new mapboxgl.NavigationControl();
   map.addControl(nav, 'bottom-right');
