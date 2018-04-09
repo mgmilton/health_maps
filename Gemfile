@@ -18,6 +18,8 @@ gem 'faraday'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
 gem "omniauth-twitter"
+gem 'omniauth-google-oauth2'
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
