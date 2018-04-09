@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: "welcome#index"
   get "/login", to: "sessions#new"
+  get "/auth/twitter", as: :twitter_login
   post "/login", to: "sessions#create"
   get "/logout", to: "sessions#destroy"
   post "/search", to: "locations#search"
