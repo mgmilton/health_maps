@@ -32,8 +32,6 @@ end
 
 group :test do
   gem 'simplecov'
-  gem 'vcr'
-  gem 'webmock'
   gem 'twilio_mock', '~> 0.4.0'
 end
 
