@@ -16,6 +16,10 @@
 /node_modules
 /yarn-error.log
 /coverage
+
+203c142bbd13b6be3345ac5daecb38f7c415765d
+
+
 .byebug_history
 public/assets
 # Ignore application configuration

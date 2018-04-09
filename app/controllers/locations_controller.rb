@@ -1,25 +1,19 @@
 class LocationsController < ApplicationController
-
-  def new
-    @location = Location.new
-  end
-
-  def create
-    @location = Location.new(location_params)
-    if @location.save
-      redirect_to location_path(@location)
-    else
-      render :new
-    end
+  def index
+    @locations = Location.all
   end
 
   def show
     @location = Location.find(params[:id])
   end
 
+  def search
+    @location = Location.find(params[:name][:id])
+    redirect_to location_path(@location)
+  end
   private
 
     def location_params
-      params.require(:location).permit(:name)
+      params.require(:location).permit(:name, :state)
     end
 end

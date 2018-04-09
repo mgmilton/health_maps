@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   get "/logout", to: "sessions#destroy"
+  post "/search", to: "locations#search"
+  get "/search", to: "locations#search"
+  post "/locations", to: "locations#search"
   resources :users, only: [:new, :create, :show]
-  resources :locations, only: [:new, :create, :show]
+  resources :locations, only: [:index, :show]
 end

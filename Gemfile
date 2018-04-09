@@ -20,7 +20,6 @@ gem 'twilio-ruby'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
 
-
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails'
