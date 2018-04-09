@@ -16,6 +16,10 @@
 /node_modules
 /yarn-error.log
 /coverage
+<<<<<<< toggle_select
+
+=======
+>>>>>>> master
 .byebug_history
 public/assets
 # Ignore application configuration
