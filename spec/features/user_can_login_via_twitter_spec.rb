@@ -6,7 +6,8 @@ describe "As a registered user" do
 
       visit "/"
       click_link "Login"
-      click_link "Twitter"
+      click_link "auth/twitter"
+      binding.pry
       expect(current_path).to be("/auth/twitter")
     end
   end
