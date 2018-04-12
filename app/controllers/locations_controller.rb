@@ -8,7 +8,6 @@ class LocationsController < ApplicationController
   end
 
   def show
-    binding.pry
     @location = Location.find(params[:id])
   end
 
