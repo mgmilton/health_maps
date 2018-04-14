@@ -8,8 +8,6 @@ Rails.application.routes.draw do
   post "/search", to: "locations#search"
   get "/search", to: "locations#search"
   post "/locations", to: "locations#search"
-  get '/auth/twitter', :as => :twitter_login
-  get '/auth/twitter/callback', to: "sessions#create"
   resources :users, only: [:new, :create, :show]
   resources :locations, only: [:index, :show]
 end
