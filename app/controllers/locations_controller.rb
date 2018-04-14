@@ -1,6 +1,10 @@
 class LocationsController < ApplicationController
   def index
-    @locations = Location.all
+    # location = LocationConnection.new
+    #
+    # location.conn
+    # location.get_json
+    # # @locations = Location.all
   end
 
   def show
@@ -11,6 +15,7 @@ class LocationsController < ApplicationController
     @location = Location.find(params[:name][:id])
     redirect_to location_path(@location)
   end
+
   private
 
     def location_params

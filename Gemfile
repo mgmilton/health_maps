@@ -15,8 +15,15 @@ gem 'figaro'
 gem 'devise'
 gem 'bcrypt'
 gem 'faraday'
+<<<<<<< HEAD
+=======
+gem 'soda-ruby', :require => 'soda'
+>>>>>>> adds location connection process
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
+gem "omniauth-twitter"
+gem 'omniauth-google-oauth2'
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -31,8 +38,6 @@ end
 
 group :test do
   gem 'simplecov'
-  gem 'vcr'
-  gem 'webmock'
   gem 'twilio_mock', '~> 0.4.0'
 end
 
