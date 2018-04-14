@@ -4,7 +4,6 @@ class SessionsController < ApplicationController
   end
 
   def create
-    binding.pry
     user = User.find_by(email: user_params[:email]) ||
     twitter = User.from_omniauth(request.env["omniauth.auth"])
     if user && user.authenticate(user_params[:password])
