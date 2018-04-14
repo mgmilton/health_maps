@@ -15,6 +15,10 @@ gem 'figaro'
 gem 'devise'
 gem 'bcrypt'
 gem 'faraday'
+<<<<<<< HEAD
+=======
+gem 'soda-ruby', :require => 'soda'
+>>>>>>> adds location connection process
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
 gem "omniauth-twitter"
