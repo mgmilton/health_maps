@@ -7,9 +7,10 @@ class User < ApplicationRecord
 
 
   def self.from_omniauth(auth_info)
+    return if auth_info.nil?
     where(uid: auth_info[:uid]).first_or_create! do |new_user|
-      new_user.email              = "from twitter"
-      new_user.password           = "from twitter"
+      new_user.email              =  rand(1..888)
+      new_user.password           =  "from twitter"
       new_user.uid                = auth_info.uid
       new_user.name               = auth_info.extra.raw_info.name
       new_user.screen_name        = auth_info.extra.raw_info.screen_name

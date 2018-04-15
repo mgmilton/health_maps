@@ -34,6 +34,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'vcr'
   gem 'simplecov'
   gem 'twilio_mock', '~> 0.4.0'
 end
