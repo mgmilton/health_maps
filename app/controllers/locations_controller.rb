@@ -4,7 +4,6 @@ class LocationsController < ApplicationController
 
   def show
     @location = Location.find(params[:id])
-    binding.pry
   end
 
   def search

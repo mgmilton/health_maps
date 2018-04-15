@@ -4,7 +4,10 @@
   </div>
   <div id='selections' class='selection'>
     <%= render partial: "selection" %>
-    <%= @location.cdc_api_call.first[:arthritis_adjprev] %>
+    <% @location.write_neighborhood_health_data %>
+    <% @location.neighborhoods.each do |negh| %>
+      <%= negh.healthcare_access %>
+      <% end %>
   </div>
 </div>
 
@@ -25,8 +28,7 @@
       id: '500cities',
       type: 'fill',
       source: {
-        'type': 'geojson',
-        'data': url
+        'data': "<%= @location.neighborhoods %>"
       },
       paint: {
         'fill': {
