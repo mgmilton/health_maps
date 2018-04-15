@@ -4,7 +4,7 @@
   </div>
   <div id='selections' class='selection'>
     <%= render partial: "selection" %>
-     <%= @health.first[:binge_adjprev].to_f %>
+    <%= @location.cdc_api_call.first[:arthritis_adjprev] %>
   </div>
 </div>
 
@@ -14,11 +14,6 @@
 
   mapboxgl.accessToken = 'pk.eyJ1IjoibWdtaWx0b24iLCJhIjoiY2pldm81anY4MG13aDJ5cGEza3hxcml1cSJ9.aU1ioXfQ5DPbyQKdcUdxoA';
   var coord = <%= raw @location.coordinates %>;
-  var url = "https://chronicdata.cdc.gov/resource/csmm-fdhi.geojson?cityname=Beaverton&measureid=BPHIGH";
-  var xhReq = new XMLHttpRequest();
-  xhReq.open("GET", url, false);
-  xhReq.send(null);
-  var bp = JSON.parse(xhReq.responseText);
   var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mgmilton/cjfj0t3er6zo92rpa4dv54lpw',
