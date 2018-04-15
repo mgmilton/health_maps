@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   get "/search", to: "locations#search"
   post "/locations", to: "locations#search"
   resources :users, only: [:new, :create, :show]
+  resources :health, only: [:new, :create, :show]
   resources :locations, only: [:index, :show]
 end

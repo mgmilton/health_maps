@@ -10,11 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180415034519) do
+ActiveRecord::Schema.define(version: 20180415213005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "healths", force: :cascade do |t|
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_healths_on_user_id"
+  end
 
   create_table "locations", force: :cascade do |t|
     t.string "name"
@@ -70,5 +75,6 @@ ActiveRecord::Schema.define(version: 20180415034519) do
     t.string "oauth_token_secret"
   end
 
+  add_foreign_key "healths", "users"
   add_foreign_key "neighborhoods", "locations"
 end
