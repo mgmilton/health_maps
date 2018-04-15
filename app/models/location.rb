@@ -8,7 +8,7 @@ class Location < ApplicationRecord
 
   def write_neighborhood_health_data
     cdc_api_call.each do |raw_neighborhood|
-      neighborhoods.create(healthcare_access: raw_neighborhood[:access2_crudeprev],
+      neighborhoods.find_or_create_by(healthcare_access: raw_neighborhood[:access2_crudeprev],
         arthritis_prevelance: raw_neighborhood[:arthritis_crudeprev],
         binge_drinking_prevelance: raw_neighborhood[:binge_crudeprev],
         high_blood_pressure_prevelance: raw_neighborhood[:bphigh_crudeprev],

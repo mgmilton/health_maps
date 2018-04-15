@@ -28,10 +28,10 @@
       id: '500cities',
       type: 'fill',
       source: {
-        'data': "<%= @location.neighborhoods %>"
+        'data': "<%= @location.neighborhoods.pluck(:arthritis_prevelance).map(&:to_f) %>"
       },
       paint: {
-        'fill': {
+        'fill-color': {
          type: "categorical",
          property: 'data_value',
          stops: [["22.8", '#3BB3C3'], ["26.2", '#3BB3C3']]
