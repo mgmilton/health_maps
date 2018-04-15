@@ -3,7 +3,6 @@ class HealthController < ApplicationController
   end
 
   def create
-    binding.pry
     @health = Health.new
   end
 end

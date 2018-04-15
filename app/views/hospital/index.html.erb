@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet'>
+    <style>
+      .map {
+        position: absolute;
+        left: 33.3333%;
+        width: 66.6666%;
+        top: 0;
+        bottom: 0;
+      }
+
+      .heading {
+        background: #fff;
+        border-bottom: 1px solid #eee;
+        height: 60px;
+        line-height: 60px;
+        background-color: #A63A50;
+        color: #fff;
+        padding: 0 10px;
+      }
+
+      .listings {
+        height: 100%;
+        overflow: auto;
+        padding-bottom: 60px;
+      }
+
+      .listings .item {
+        display: block;
+        border-bottom: 1px solid #eee;
+        padding: 10px;
+        text-decoration: none;
+      }
+
+      .listings .item:last-child { border-bottom: none; }
+
+      .listings .item .title {
+        display: block;
+        color: #A63A50;
+        font-weight: 700;
+      }
+
+      .listings .item .title small { font-weight: 400; }
+
+      .listings .item.active .title,
+      .listings .item .title:hover { color: #6184D8; }
+
+      .listings .item.active {
+        background-color: #f8f8f8;
+      }
+
+      ::-webkit-scrollbar {
+        width: 3px;
+        height: 3px;
+        border-left: 0;
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      ::-webkit-scrollbar-track {
+        background: none;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #A63A50;
+        border-radius: 0;
+      }
+
+      .clearfix { display: block; }
+
+      .clearfix::after {
+        content: '.';
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+      }
+      /* Marker tweaks */
+      .mapboxgl-popup-close-button {
+        display: none;
+      }
+
+      .mapboxgl-popup-content {
+        font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+        padding: 0;
+        width: 200px;
+      }
+
+      .mapboxgl-popup-content-wrapper {
+        padding: 1%;
+      }
+
+      .mapboxgl-popup-content h3 {
+        background: #A63A50;
+        color: #fff;
+        margin: 0;
+        display: block;
+        padding: 10px;
+        border-radius: 3px 3px 0 0;
+        font-weight: 700;
+        margin-top: -15px;
+      }
+
+      .mapboxgl-popup-content h4 {
+        margin: 0;
+        display: block;
+        padding: 10px;
+        font-weight: 400;
+      }
+
+      .mapboxgl-popup-content div {
+        padding: 10px;
+      }
+
+      .mapboxgl-container .leaflet-marker-icon {
+        cursor: pointer;
+      }
+
+      .mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
+        margin-top: 15px;
+      }
+      .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+        border-bottom-color: #EF798A;
+      }
+      .marker {
+        border: none;
+        cursor: pointer;
+        height: 56px;
+        width: 56px;
+        background-image: url(marker.png);
+        background-color: rgba(0, 0, 0, 0);
+      }
+      .mapboxgl-popup {
+        padding-bottom: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class='sidebar'>
+      <div class='heading'>
+        <h1> US Hospital Locations </h1>
+      </div>
+      <div id='listings' class='listings'></div>
+    </div>
+    <div id='map' class='map pad2'>Map</div>
+    <script>
+      if (!('remove' in Element.prototype)) {
+        Element.prototype.remove = function() {
+          if (this.parentNode) {
+            this.parentNode.removeChild(this);
+          }
+        };
+      }
+
+      mapboxgl.accessToken = 'pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA';
+      var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/light-v9',
+        center: <%= raw @location.coordinates %>,
+        zoom: 13
+      });
+      var url = 'https://gist.githubusercontent.com/mgmilton/f775e6077e0f3784d01b2c28e4d02b6b/raw/cca7c61bb58c593732da56771a2fbb7a700d4baf/hospitals.geojson';
+      var xhReq = new XMLHttpRequest();
+      xhReq.open("GET", url, false);
+      xhReq.send(null);
+      var hospitals = JSON.parse(xhReq.responseText);
+      map.on('load', function (e) {
+        map.addSource('hospitals', {
+          type: 'geojson',
+            data: url
+        })
+          buildLocationList(hospitals)
+        });
+        hospitals.features.forEach(function(marker) {
+          var el = document.createElement('div');
+          el.className = 'marker';
+          new mapboxgl.Marker(el, { offset: [0, -23] })
+            .setLngLat(marker.geometry.coordinates)
+            .addTo(map);
+          el.addEventListener('click', function(e) {
+            var activeItem = document.getElementsByClassName('active');
+            flyToStore(marker);
+            createPopUp(marker);
+            e.stopPropagation();
+            if (activeItem[0]) {
+              activeItem[0].classList.remove('active');
+            }
+            var listing = document.getElementById('listing-' + i);
+            console.log(listing);
+            listing.classList.add('active');
+          });
+        });
+
+      function flyToHospital(currentFeature) {
+        map.flyTo({
+          center: currentFeature.geometry.coordinates,
+          zoom: 15
+        });
+      }
+
+
+      function createPopUp(currentFeature) {
+        var popUps = document.getElementsByClassName('mapboxgl-popup');
+        if (popUps[0]) popUps[0].remove();
+
+        var prop = currentFeature.properties;
+        var popup = new mapboxgl.Popup({closeOnClick: false})
+          .setLngLat(currentFeature.geometry.coordinates)
+          .setHTML('<h3>' + prop.NAME + '</h3>' +
+            '<h4>' + prop.ADDRESS + ' '+ prop.CITY + ', ' + prop.STATE+ ' ' + prop.TELEPHONE + '\n' + 'TYPE: ' + prop.TYPE + '\n' + prop.WEBSITE.link(prop.WEBSITE) +'<h4>')
+          .addTo(map);
+      }
+
+
+      function buildLocationList(data) {
+        for (i = 0; i < data.features.length; i++) {
+          var currentFeature = data.features[i];
+          var prop = currentFeature.properties;
+          var listings = document.getElementById('listings');
+          var listing = listings.appendChild(document.createElement('div'));
+          listing.className = 'item';
+          listing.id = "listing-" + i;
+          var link = listing.appendChild(document.createElement('a'));
+          link.href = '#';
+          link.className = 'title';
+          link.dataPosition = i;
+          link.innerHTML = prop.NAME;
+          var details = listing.appendChild(document.createElement('div'));
+          details.innerHTML = prop.ADDRESS + ' '+ prop.CITY + ', ' + prop.STATE + ' - ' + prop.TELEPHONE;
+
+
+
+          link.addEventListener('click', function(e) {
+            var clickedListing = data.features[this.dataPosition];
+
+            flyToHospital(clickedListing);
+            createPopUp(clickedListing);
+            var activeItem = document.getElementsByClassName('active');
+
+            if (activeItem[0]) {
+              activeItem[0].classList.remove('active');
+            }
+            this.parentNode.classList.add('active');
+
+          });
+        }
+      }
+      var nav = new mapboxgl.NavigationControl();
+      map.addControl(nav, 'bottom-right');
+    </script>
+  </body>
+
+</html>

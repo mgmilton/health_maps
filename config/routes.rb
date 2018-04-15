@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post "/search", to: "locations#search"
   get "/search", to: "locations#search"
   post "/locations", to: "locations#search"
+  get "/hospital/index", to: "hospital#index"
   resources :users, only: [:new, :create, :show]
   resources :health, only: [:new, :create, :show]
   resources :locations, only: [:index, :show]
