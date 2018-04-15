@@ -3,6 +3,6 @@ FactoryBot.define do
     email "map@maps.com"
     name "Mister Map"
     password "MyString"
-    location "Portland, OR"
+    location "Portland"
   end
 end

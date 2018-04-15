@@ -1,10 +1,5 @@
 class LocationsController < ApplicationController
   def index
-    # location = LocationConnection.new
-    #
-    # location.conn
-    # location.get_json
-    # # @locations = Location.all
   end
 
   def show

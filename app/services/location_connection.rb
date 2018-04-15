@@ -1,22 +1,25 @@
 class LocationConnection
-  BASE = "https://chronicdata.cdc.gov"
+  def initialize(city)
+    @city = city
+  end
 
   def conn
-    conn = Faraday.new
-    res = conn.get do |request|
-      request.url BASE
-      request.headers['X-App-Token'] = ['SOCRATA_API_KEY']
+    client = SODA::Client.new({:domain => "https://chronicdata.cdc.gov/", :app_token => ENV['SOCRATA_API_KEY']})
+    client.get("https://chronicdata.cdc.gov/resource/47z2-4wuh.json?placename=#{city}")
+  end
+
+  def get_jsons
+    tract_to_jsons.map do |census_json|
+      JSON.parse(census_json, symbolize_names: true)
     end
   end
 
-  def headers
-    {
-      'X-App-Token': ENV['SOCRATA_API_KEY']
-    }
+  def tract_to_jsons
+    conn.map do |census_hashie|
+      census_hashie.to_json
+    end
   end
 
-  def get_json
-    # response = conn.get
-    JSON.parse(response.body, symbolize_names: true)
-  end
+  private
+    attr_reader :city
 end
