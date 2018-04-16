@@ -6,6 +6,10 @@
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.css' rel='stylesheet' />
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet'>
     <style>
+      .pad2 {
+        padding: 5px;
+      }
+
       .map {
         position: absolute;
         left: 33.3333%;
@@ -131,7 +135,7 @@
         cursor: pointer;
         height: 56px;
         width: 56px;
-        background-image: url(marker.png);
+        background-image: <%= image_tag "marker.png" %>;
         background-color: rgba(0, 0, 0, 0);
       }
       .mapboxgl-popup {
@@ -175,6 +179,7 @@
         })
           buildLocationList(hospitals)
         });
+        map.addControl(new mapboxgl.NavigationControl({ position: 'top-left' }));
         hospitals.features.forEach(function(marker) {
           var el = document.createElement('div');
           el.className = 'marker';
@@ -249,8 +254,7 @@
           });
         }
       }
-      var nav = new mapboxgl.NavigationControl();
-      map.addControl(nav, 'bottom-right');
+
     </script>
   </body>
 
