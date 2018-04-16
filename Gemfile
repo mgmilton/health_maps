@@ -19,7 +19,7 @@ gem 'soda-ruby', :require => 'soda'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
 gem "omniauth-twitter"
-gem 'omniauth-google-oauth2'
+
 
 
 group :development, :test do

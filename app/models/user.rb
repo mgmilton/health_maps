@@ -5,7 +5,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
   validates :password, presence: true, on: :creates
   validates :password, presence: true, on: :update, allow_blank: true
-
+  validates :password, confirmation: true
 
   def self.from_omniauth(auth_info)
     return if auth_info.nil?
