@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180417140900) do
+ActiveRecord::Schema.define(version: 20180417195252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,33 +32,30 @@ ActiveRecord::Schema.define(version: 20180417140900) do
 
   create_table "neighborhoods", force: :cascade do |t|
     t.bigint "location_id"
-    t.string "healthcare_access"
-    t.string "arthritis_prevelance"
-    t.string "binge_drinking_prevelance"
-    t.string "high_blood_pressure_prevelance"
-    t.string "bp_medication_prevelance"
-    t.string "cancer_prevelance"
-    t.string "asthma_prevelance"
-    t.string "current_smoking_prevelance"
-    t.string "dental_visit_prevelance"
-    t.string "diabetes_prevelance"
-    t.string "high_cholesterol_prevelance"
-    t.string "kidney_disease_prevelance"
-    t.string "lack_of_physical_activity_prevelance"
-    t.string "mammography_prevelance"
-    t.string "bad_mental_health_prevelance"
-    t.string "obesity_prevelance"
-    t.string "pap_smear_prevelance"
-    t.string "lack_sleep_prevelance"
-    t.string "stroke_prevelance"
-    t.string "teeth_loss_prevelance"
     t.string "placefips"
     t.string "tractfips"
     t.string "population"
-    t.string "core_prevention_women"
-    t.string "core_prevention_men"
-    t.string "heart_disease_prevelance"
-    t.string "routine_checkup_prevelance"
+    t.decimal "access_to_healthcare"
+    t.decimal "arthritis_prevalence"
+    t.decimal "binge_drinking_prevalence"
+    t.decimal "high_blood_pressure_prevalence"
+    t.decimal "cancer_prevalence"
+    t.decimal "asthma_prevalence"
+    t.decimal "current_smoking_prevalence"
+    t.decimal "dental_visit_prevalence"
+    t.decimal "diabetes_prevalence"
+    t.decimal "high_cholesterol_prevalence"
+    t.decimal "kidney_disease_prevalence"
+    t.decimal "lack_of_physical_activity_prevalence"
+    t.decimal "mammography_prevalence"
+    t.decimal "bad_mental_health_prevalence"
+    t.decimal "obesity_prevalence"
+    t.decimal "pap_smear_prevalence"
+    t.decimal "lack_of_sleep_prevalence"
+    t.decimal "stroke_prevalence"
+    t.decimal "teeth_loss_prevalence"
+    t.decimal "heart_disease_prevalence"
+    t.decimal "routine_checkup_prevalence"
     t.index ["location_id"], name: "index_neighborhoods_on_location_id"
   end
 

@@ -1,7 +1,7 @@
 class HealthsController < ApplicationController
-  before_all :set_health
+  before_action :set_health
   def new
-    
+
   end
 
   def create

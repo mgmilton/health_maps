@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
   def index
+    @locations = Location.all.limit(20)
   end
 
   def show
