@@ -2,7 +2,7 @@
 
 
 <div class='neighborhood_data'>
-  <h1> Neighborhood Health information for <%= @location.name %> </h1>
+  <h1> Health Information for A Random Neighborhood <%= @location.name %> </h1>
 </div>
 
 <div id="barchart_material" style="width: 1200px; height: 1200px;">
@@ -16,27 +16,27 @@
 
   function drawChart() {
     var data = google.visualization.arrayToDataTable([
-      ['Neighborhood', 'Lack of Access to Health Care', 'Arthritis Prevalence', 'Binge Drinking Prevalance', 'High Blood Pressure Prevalence', 'Cancer Prevalence', 'Asthma Prevalence', 'Current Smoking Prevalance', 'Dental Visit Prevalence', 'Diabetes Prevalence', 'High Cholesterol Prevalence', 'Kidney Disease Prevalence', 'Lack of Physical Activity Prevalence', 'Bad Mental Health Prevalence', 'Obesity Prevalence', 'Pap Smear Prevalence', 'Lack of Sleep Prevalence', 'Stroke Prevalence', 'Teeth Loss Prevalence', 'Heart Disease Prevalence', 'Routine Checkup Prevalence'],
+      ['Random Neighborhood', 'Lack of Access to Health Care', 'Arthritis Prevalence', 'Binge Drinking Prevalance', 'High Blood Pressure Prevalence', 'Cancer Prevalence', 'Asthma Prevalence', 'Current Smoking Prevalance', 'Dental Visit Prevalence', 'Diabetes Prevalence', 'High Cholesterol Prevalence', 'Kidney Disease Prevalence', 'Lack of Physical Activity Prevalence', 'Bad Mental Health Prevalence', 'Obesity Prevalence', 'Pap Smear Prevalence', 'Lack of Sleep Prevalence', 'Stroke Prevalence', 'Teeth Loss Prevalence', 'Heart Disease Prevalence', 'Routine Checkup Prevalence'],
       ['Census Code: <%=@location.neighborhoods.first.tractfips%>',
-      <%=@location.neighborhoods.first.access_to_healthcare %>,
-      <%=@location.neighborhoods.first.arthritis_prevalence%>, <%=@location.neighborhoods.first.binge_drinking_prevalence%>,
-      <%=@location.neighborhoods.first.high_blood_pressure_prevalence%>,
-      <%=@location.neighborhoods.first.cancer_prevalence%>,
-      <%=@location.neighborhoods.first.asthma_prevalence%>,
-      <%=@location.neighborhoods.first.current_smoking_prevalence%>,
-      <%=@location.neighborhoods.first.dental_visit_prevalence%>,
-      <%=@location.neighborhoods.first.diabetes_prevalence%>,
-      <%=@location.neighborhoods.first.high_cholesterol_prevalence%>,
-      <%=@location.neighborhoods.first.kidney_disease_prevalence%>,
-      <%=@location.neighborhoods.first.lack_of_physical_activity_prevalence%>,
-      <%=@location.neighborhoods.first.bad_mental_health_prevalence%>,
-      <%=@location.neighborhoods.first.obesity_prevalence%>,
-      <%=@location.neighborhoods.first.pap_smear_prevalence%>,
-      <%=@location.neighborhoods.first.lack_of_sleep_prevalence%>,
-      <%=@location.neighborhoods.first.stroke_prevalence%>,
-      <%=@location.neighborhoods.first.teeth_loss_prevalence%>,
-      <%=@location.neighborhoods.first.heart_disease_prevalence%>,
-      <%=@location.neighborhoods.first.routine_checkup_prevalence%>],
+      <%=@location.random_neighborhood.access_to_healthcare %>,
+      <%=@location.random_neighborhood.arthritis_prevalence%>, <%=@location.random_neighborhood.binge_drinking_prevalence%>,
+      <%=@location.random_neighborhood.high_blood_pressure_prevalence%>,
+      <%=@location.random_neighborhood.cancer_prevalence%>,
+      <%=@location.random_neighborhood.asthma_prevalence%>,
+      <%=@location.random_neighborhood.current_smoking_prevalence%>,
+      <%=@location.random_neighborhood.dental_visit_prevalence%>,
+      <%=@location.random_neighborhood.diabetes_prevalence%>,
+      <%=@location.random_neighborhood.high_cholesterol_prevalence%>,
+      <%=@location.random_neighborhood.kidney_disease_prevalence%>,
+      <%=@location.random_neighborhood.lack_of_physical_activity_prevalence%>,
+      <%=@location.random_neighborhood.bad_mental_health_prevalence%>,
+      <%=@location.random_neighborhood.obesity_prevalence%>,
+      <%=@location.random_neighborhood.pap_smear_prevalence%>,
+      <%=@location.random_neighborhood.lack_of_sleep_prevalence%>,
+      <%=@location.random_neighborhood.stroke_prevalence%>,
+      <%=@location.random_neighborhood.teeth_loss_prevalence%>,
+      <%=@location.random_neighborhood.heart_disease_prevalence%>,
+      <%=@location.random_neighborhood.routine_checkup_prevalence%>],
     ]);
 
     var options = {

@@ -34,4 +34,8 @@ class Location < ApplicationRecord
       )
     end
   end
+
+  def random_neighborhood
+    neighborhoods.sample
+  end
 end
