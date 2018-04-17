@@ -179,7 +179,7 @@
         })
           buildLocationList(hospitals)
         });
-        map.addControl(new mapboxgl.NavigationControl({ position: 'top-left' }));
+        map.addControl(new mapboxgl.NavigationControl({ position: 'bottom-right' }));
         hospitals.features.forEach(function(marker) {
           var el = document.createElement('div');
           el.className = 'marker';
