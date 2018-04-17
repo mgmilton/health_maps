@@ -1,5 +1,7 @@
 {
   "name": "health_maps",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "chart.js": "^2.7.2"
+  }
 }

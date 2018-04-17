@@ -1,0 +1,50 @@
+class UpdateColumnsOnNeighborhoods < ActiveRecord::Migration[5.1]
+  def change
+    remove_column :neighborhoods, :healthcare_access, :string
+    remove_column :neighborhoods, :arthritis_prevelance, :string
+    remove_column :neighborhoods, :binge_drinking_prevelance, :string
+    remove_column :neighborhoods, :high_blood_pressure_prevelance, :string
+    remove_column :neighborhoods, :bp_medication_prevelance, :string
+    remove_column :neighborhoods, :cancer_prevelance, :string
+    remove_column :neighborhoods, :asthma_prevelance, :string
+    remove_column :neighborhoods, :current_smoking_prevelance, :string
+    remove_column :neighborhoods, :dental_visit_prevelance, :string
+    remove_column :neighborhoods, :diabetes_prevelance, :string
+    remove_column :neighborhoods, :high_cholesterol_prevelance, :string
+    remove_column :neighborhoods, :kidney_disease_prevelance, :string
+    remove_column :neighborhoods, :lack_of_physical_activity_prevelance, :string
+    remove_column :neighborhoods, :mammography_prevelance, :string
+    remove_column :neighborhoods, :bad_mental_health_prevelance, :string
+    remove_column :neighborhoods, :obesity_prevelance, :string
+    remove_column :neighborhoods, :pap_smear_prevelance, :string
+    remove_column :neighborhoods, :lack_sleep_prevelance, :string
+    remove_column :neighborhoods, :stroke_prevelance, :string
+    remove_column :neighborhoods, :teeth_loss_prevelance, :string
+    remove_column :neighborhoods, :core_prevention_women, :string
+    remove_column :neighborhoods, :core_prevention_men, :string
+    remove_column :neighborhoods, :heart_disease_prevelance, :string
+    remove_column :neighborhoods, :routine_checkup_prevelance, :string
+
+    add_column :neighborhoods, :access_to_healthcare, :decimal
+    add_column :neighborhoods, :arthritis_prevalence, :decimal
+    add_column :neighborhoods, :binge_drinking_prevalence, :decimal
+    add_column :neighborhoods, :high_blood_pressure_prevalence, :decimal
+    add_column :neighborhoods, :cancer_prevalence, :decimal
+    add_column :neighborhoods, :asthma_prevalence, :decimal
+    add_column :neighborhoods, :current_smoking_prevalence, :decimal
+    add_column :neighborhoods, :dental_visit_prevalence, :decimal
+    add_column :neighborhoods, :diabetes_prevalence, :decimal
+    add_column :neighborhoods, :high_cholesterol_prevalence, :decimal
+    add_column :neighborhoods, :kidney_disease_prevalence, :decimal
+    add_column :neighborhoods, :lack_of_physical_activity_prevalence, :decimal
+    add_column :neighborhoods, :mammography_prevalence, :decimal
+    add_column :neighborhoods, :bad_mental_health_prevalence, :decimal
+    add_column :neighborhoods, :obesity_prevalence, :decimal
+    add_column :neighborhoods, :pap_smear_prevalence, :decimal
+    add_column :neighborhoods, :lack_of_sleep_prevalence, :decimal
+    add_column :neighborhoods, :stroke_prevalence, :decimal
+    add_column :neighborhoods, :teeth_loss_prevalence, :decimal
+    add_column :neighborhoods, :heart_disease_prevalence, :decimal
+    add_column :neighborhoods, :routine_checkup_prevalence, :decimal
+  end
+end

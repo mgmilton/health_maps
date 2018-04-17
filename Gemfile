@@ -19,6 +19,9 @@ gem 'soda-ruby', :require => 'soda'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
 gem "omniauth-twitter"
+gem 'chart-js-rails'
+gem 'chartkick'
+gem 'highcharts'
 
 
 
