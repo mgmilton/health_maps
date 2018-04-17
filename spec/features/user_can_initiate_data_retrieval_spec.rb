@@ -4,8 +4,9 @@ describe "Location Controller" do
   it "allows me to select a location" do
     VCR.use_cassette("cdc service", :record => :new_episodes) do
       location = create(:location)
+      neighborhood = create(:neighborhood, location: location)
       visit "/locations"
-      select("Rip City", from: "name[id]")
+      select("Portland", from: "name[id]")
       click_on "Search"
       expect(current_path).to eq("/locations/#{location.id}")
     end
@@ -13,10 +14,10 @@ describe "Location Controller" do
 
   it "displays data on location" do
     VCR.use_cassette("cdc service", :record => :new_episodes) do
-      create(:location)
+      location = create(:location)
+      neighborhood = create(:neighborhood, location: location)
       visit"/locations/22"
-      expect(page).to have_content("Category")
-      expect(page).to have_content("Measurement")
+      expect(page).to have_content("Portland")
     end
   end
 end
