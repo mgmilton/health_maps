@@ -12,7 +12,6 @@ class Location < ApplicationRecord
         arthritis_prevalence: raw_neighborhood[:arthritis_crudeprev],
         binge_drinking_prevalence: raw_neighborhood[:binge_crudeprev],
         high_blood_pressure_prevalence: raw_neighborhood[:bphigh_crudeprev],
-        high_blood_pressure_prevalence: raw_neighborhood[:bpmed_crudeprev],
         cancer_prevalence: raw_neighborhood[:cancer_crudeprev],
         asthma_prevalence: raw_neighborhood[:casthma_crudeprev],
         current_smoking_prevalence: raw_neighborhood[:csmoking_crudeprev],
