@@ -21,10 +21,10 @@
 
         var options = {
           chart: {
-            title: ' <%= raw @location.name %>',
-            subtitle: 'CDC data for key health measures',
+            title: 'CDC Population Data for Health Measurements',
+            subtitle: 'All Metrics as Percentage of Population',
           },
-          bars: 'vertical' // Required for Material Bar Charts.
+          bars: 'vertical',
         };
 
         var chart = new google.charts.Bar(document.getElementById('barchart_material'));
