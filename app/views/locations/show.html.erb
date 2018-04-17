@@ -5,40 +5,5 @@
   <div id='selections' class='selection'>
     <%= render partial: "selection" %>
     <% @location.write_neighborhood_health_data %>
-    <% @location.neighborhoods.each do |negh| %>
-      <%= negh.healthcare_access %>
-      <% end %>
   </div>
 </div>
-
-<div id='map' class='map pad2'>Map</div>
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.1/mapbox-gl.js'></script>
-<script>
-
-  mapboxgl.accessToken = 'pk.eyJ1IjoibWdtaWx0b24iLCJhIjoiY2pldm81anY4MG13aDJ5cGEza3hxcml1cSJ9.aU1ioXfQ5DPbyQKdcUdxoA';
-  var coord = <%= raw @location.coordinates %>;
-  var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mgmilton/cjfj0t3er6zo92rpa4dv54lpw',
-    center: coord,
-    zoom: 10
-  });
-  map.on('load', function (e) {
-    map.addLayer({
-      id: '500cities',
-      type: 'fill',
-      source: {
-        'data': "<%= @location.neighborhoods.pluck(:arthritis_prevelance).map(&:to_f) %>"
-      },
-      paint: {
-        'fill-color': {
-         type: "categorical",
-         property: 'data_value',
-         stops: [["22.8", '#3BB3C3'], ["26.2", '#3BB3C3']]
-       }
-      }
-      }, 'waterway-label');
-    });
-  var nav = new mapboxgl.NavigationControl();
-  map.addControl(nav, 'bottom-right');
-</script>
