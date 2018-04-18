@@ -2,6 +2,7 @@ FactoryBot.define do
   factory :location do
     id 22
     name "Portland"
+    state "OR"
     coordinates ["-70.2568189", "43.6590993"]
   end
 
