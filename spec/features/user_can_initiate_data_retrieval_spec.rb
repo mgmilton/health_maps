@@ -3,6 +3,8 @@ require "rails_helper"
 describe "Location Controller" do
   it "allows me to select a location" do
     VCR.use_cassette("cdc service", :record => :new_episodes) do
+      user = create(:user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       location = create(:location)
       neighborhood = create(:neighborhood, location: location)
       visit "/locations"
@@ -14,6 +16,8 @@ describe "Location Controller" do
 
   it "displays data on location" do
     VCR.use_cassette("cdc service", :record => :new_episodes) do
+      user = create(:user)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       location = create(:location)
       neighborhood = create(:neighborhood, location: location)
       visit"/locations/22"
