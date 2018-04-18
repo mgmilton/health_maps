@@ -24,4 +24,23 @@ RSpec.describe Location, type: :model do
       end
     end
   end
+
+  describe "random_neighborhood" do
+    it "picks a random neighborhood" do
+      VCR.use_cassette("neighborhood cheddar", :record => :new_episodes) do
+        burlington = create(:location, name: "Burlington")
+        health_data = burlington.write_neighborhood_health_data
+        expect(burlington.random_neighborhood.class).to be(Neighborhood)
+      end
+    end
+  end
+
+  describe "name_with_state" do
+    it "concatenates string city attribute with state attribute" do
+      burlington = create(:location, name: "Burlington", state: "VT")
+      city_and_state = burlington.name_with_state
+
+      expect(city_and_state).to eq("Burlington, VT")
+    end
+  end
 end

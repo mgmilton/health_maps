@@ -2,7 +2,7 @@
 
 
 <div class='neighborhood_data'>
-  <h1> Health Information for A Random Neighborhood <%= @location.name %> </h1>
+  <h1> Health Information for A Neighborhood in <%= @location.name_with_state %> </h1>
 </div>
 
 <div id="barchart_material" style="width: 1200px; height: 1200px;">
@@ -13,10 +13,9 @@
   google.charts.load('current', {'packages':['bar']});
   google.charts.setOnLoadCallback(drawChart);
 
-
   function drawChart() {
     var data = google.visualization.arrayToDataTable([
-      ['Random Neighborhood', 'Lack of Access to Health Care', 'Arthritis Prevalence', 'Binge Drinking Prevalance', 'High Blood Pressure Prevalence', 'Cancer Prevalence', 'Asthma Prevalence', 'Current Smoking Prevalance', 'Dental Visit Prevalence', 'Diabetes Prevalence', 'High Cholesterol Prevalence', 'Kidney Disease Prevalence', 'Lack of Physical Activity Prevalence', 'Bad Mental Health Prevalence', 'Obesity Prevalence', 'Pap Smear Prevalence', 'Lack of Sleep Prevalence', 'Stroke Prevalence', 'Teeth Loss Prevalence', 'Heart Disease Prevalence', 'Routine Checkup Prevalence'],
+      ['Random Neighborhood', 'Lack of Access to Health Care', 'Arthritis Prevalence', 'Binge Drinking Prevalence', 'High Blood Pressure Prevalence', 'Cancer Prevalence', 'Asthma Prevalence', 'Current Smoking Prevalence', 'Dental Visit Prevalence', 'Diabetes Prevalence', 'High Cholesterol Prevalence', 'Kidney Disease Prevalence', 'Lack of Physical Activity Prevalence', 'Bad Mental Health Prevalence', 'Obesity Prevalence', 'Pap Smear Prevalence', 'Lack of Sleep Prevalence', 'Stroke Prevalence', 'Teeth Loss Prevalence', 'Heart Disease Prevalence', 'Routine Checkup Prevalence'],
       ['Census Code: <%=@location.neighborhoods.first.tractfips%>',
       <%=@location.random_neighborhood.access_to_healthcare %>,
       <%=@location.random_neighborhood.arthritis_prevalence%>, <%=@location.random_neighborhood.binge_drinking_prevalence%>,

@@ -172,6 +172,7 @@
       xhReq.open("GET", url, false);
       xhReq.send(null);
       var hospitals = JSON.parse(xhReq.responseText);
+      
       map.on('load', function (e) {
         map.addSource('hospitals', {
           type: 'geojson',
@@ -213,7 +214,7 @@
         if (popUps[0]) popUps[0].remove();
 
         var prop = currentFeature.properties;
-        var popup = new mapboxgl.Popup({closeOnClick: false})
+        var popup = new mapboxgl.Popup({closeOnClick: TRUE})
           .setLngLat(currentFeature.geometry.coordinates)
           .setHTML('<h3>' + prop.NAME + '</h3>' +
             '<h4>' + prop.ADDRESS + ' '+ prop.CITY + ', ' + prop.STATE+ ' ' + prop.TELEPHONE + '\n' + 'TYPE: ' + prop.TYPE + '\n' + prop.WEBSITE.link(prop.WEBSITE) +'<h4>')

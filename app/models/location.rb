@@ -38,4 +38,8 @@ class Location < ApplicationRecord
   def random_neighborhood
     neighborhoods.sample
   end
+
+  def name_with_state
+    "#{name}, #{state}"
+  end
 end
