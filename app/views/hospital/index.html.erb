@@ -172,7 +172,7 @@
       xhReq.open("GET", url, false);
       xhReq.send(null);
       var hospitals = JSON.parse(xhReq.responseText);
-      
+
       map.on('load', function (e) {
         map.addSource('hospitals', {
           type: 'geojson',
@@ -180,7 +180,6 @@
         })
           buildLocationList(hospitals)
         });
-        map.addControl(new mapboxgl.NavigationControl({ position: 'bottom-right' }));
         hospitals.features.forEach(function(marker) {
           var el = document.createElement('div');
           el.className = 'marker';
@@ -242,7 +241,6 @@
 
           link.addEventListener('click', function(e) {
             var clickedListing = data.features[this.dataPosition];
-
             flyToHospital(clickedListing);
             createPopUp(clickedListing);
             var activeItem = document.getElementsByClassName('active');
@@ -255,7 +253,6 @@
           });
         }
       }
-
     </script>
   </body>
 
