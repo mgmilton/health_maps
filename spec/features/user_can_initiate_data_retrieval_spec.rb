@@ -20,7 +20,7 @@ describe "Location Controller" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       location = create(:location)
       neighborhood = create(:neighborhood, location: location)
-      visit"/locations/22"
+      visit "/locations/22"
       expect(page).to have_content("Portland")
     end
   end
