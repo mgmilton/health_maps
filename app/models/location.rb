@@ -36,10 +36,14 @@ class Location < ApplicationRecord
   end
 
   def random_neighborhood
-    neighborhoods.sample
+    neighborhoods.order('RANDOM()').first
   end
 
   def name_with_state
     "#{name}, #{state}"
+  end
+
+  def rank_by_arthritis_prevalence
+    neighborhoods.order('neighborhoods.heart_disease_prevalence DESC').limit(1)
   end
 end
