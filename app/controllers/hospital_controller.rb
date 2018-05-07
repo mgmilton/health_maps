@@ -1,5 +1,4 @@
 class HospitalController < ApplicationController
-  before_action :require_current_user
   def index
     @location = Location.find_by_name(current_user.location)
   end
