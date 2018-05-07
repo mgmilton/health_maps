@@ -144,116 +144,118 @@
     </style>
   </head>
   <body>
-    <div class='sidebar'>
-      <div class='heading'>
-        <h1> US Hospital Locations </h1>
+      <div class='sidebar'>
+        <div class='heading'>
+          <h1> US Hospital Locations </h1>
+        </div>
+        <div id='listings' class='listings'></div>
       </div>
-      <div id='listings' class='listings'></div>
-    </div>
-    <div id='map' class='map pad2'>Map</div>
-    <script>
-      if (!('remove' in Element.prototype)) {
-        Element.prototype.remove = function() {
-          if (this.parentNode) {
-            this.parentNode.removeChild(this);
-          }
-        };
-      }
-
-      mapboxgl.accessToken = 'pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA';
-      var map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/light-v9',
-        center: <%= raw @location.coordinates %>,
-        zoom: 13
-      });
-      var url = 'https://gist.githubusercontent.com/mgmilton/f775e6077e0f3784d01b2c28e4d02b6b/raw/cca7c61bb58c593732da56771a2fbb7a700d4baf/hospitals.geojson';
-      var xhReq = new XMLHttpRequest();
-      xhReq.open("GET", url, false);
-      xhReq.send(null);
-      var hospitals = JSON.parse(xhReq.responseText);
-
-      map.on('load', function (e) {
-        map.addSource('hospitals', {
-          type: 'geojson',
-            data: url
-        })
-          buildLocationList(hospitals)
-        });
-        hospitals.features.forEach(function(marker) {
-          var el = document.createElement('div');
-          el.className = 'marker';
-          new mapboxgl.Marker(el, { offset: [0, -23] })
-            .setLngLat(marker.geometry.coordinates)
-            .addTo(map);
-          el.addEventListener('click', function(e) {
-            var activeItem = document.getElementsByClassName('active');
-            flyToStore(marker);
-            createPopUp(marker);
-            e.stopPropagation();
-            if (activeItem[0]) {
-              activeItem[0].classList.remove('active');
+      <div id='map' class='map pad2'>Map</div>
+      <script>
+        if (!('remove' in Element.prototype)) {
+          Element.prototype.remove = function() {
+            if (this.parentNode) {
+              this.parentNode.removeChild(this);
             }
-            var listing = document.getElementById('listing-' + i);
-            console.log(listing);
-            listing.classList.add('active');
+          };
+        }
+
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZXhhbXBsZXMiLCJhIjoiY2lqbmpqazdlMDBsdnRva284cWd3bm11byJ9.V6Hg2oYJwMAxeoR9GEzkAA';
+        var map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/mapbox/light-v9',
+          center: <%= raw @location.coordinates %>,
+          zoom: 13
+        });
+        var url = 'https://gist.githubusercontent.com/mgmilton/f775e6077e0f3784d01b2c28e4d02b6b/raw/cca7c61bb58c593732da56771a2fbb7a700d4baf/hospitals.geojson';
+        var xhReq = new XMLHttpRequest();
+        xhReq.open("GET", url, false);
+        xhReq.send(null);
+        var hospitals = JSON.parse(xhReq.responseText);
+        map.on('load', function (e) {
+          map.addSource('hospitals', {
+            type: 'geojson',
+              data: url
+          })
+            buildLocationList(hospitals)
           });
-        });
+          map.addControl(new mapboxgl.NavigationControl({ position: 'top-left' }));
+          hospitals.features.forEach(function(marker) {
+            var el = document.createElement('div');
+            el.className = 'marker';
+            new mapboxgl.Marker(el, { offset: [0, -23] })
+              .setLngLat(marker.geometry.coordinates)
+              .addTo(map);
+            el.addEventListener('click', function(e) {
+              var activeItem = document.getElementsByClassName('active');
+              flyToStore(marker);
+              createPopUp(marker);
+              e.stopPropagation();
+              if (activeItem[0]) {
+                activeItem[0].classList.remove('active');
+              }
+              var listing = document.getElementById('listing-' + i);
+              console.log(listing);
+              listing.classList.add('active');
+            });
+          });
 
-      function flyToHospital(currentFeature) {
-        map.flyTo({
-          center: currentFeature.geometry.coordinates,
-          zoom: 15
-        });
-      }
-
-
-      function createPopUp(currentFeature) {
-        var popUps = document.getElementsByClassName('mapboxgl-popup');
-        if (popUps[0]) popUps[0].remove();
-
-        var prop = currentFeature.properties;
-        var popup = new mapboxgl.Popup({closeOnClick: TRUE})
-          .setLngLat(currentFeature.geometry.coordinates)
-          .setHTML('<h3>' + prop.NAME + '</h3>' +
-            '<h4>' + prop.ADDRESS + ' '+ prop.CITY + ', ' + prop.STATE+ ' ' + prop.TELEPHONE + '\n' + 'TYPE: ' + prop.TYPE + '\n' + prop.WEBSITE.link(prop.WEBSITE) +'<h4>')
-          .addTo(map);
-      }
-
-
-      function buildLocationList(data) {
-        for (i = 0; i < data.features.length; i++) {
-          var currentFeature = data.features[i];
-          var prop = currentFeature.properties;
-          var listings = document.getElementById('listings');
-          var listing = listings.appendChild(document.createElement('div'));
-          listing.className = 'item';
-          listing.id = "listing-" + i;
-          var link = listing.appendChild(document.createElement('a'));
-          link.href = '#';
-          link.className = 'title';
-          link.dataPosition = i;
-          link.innerHTML = prop.NAME;
-          var details = listing.appendChild(document.createElement('div'));
-          details.innerHTML = prop.ADDRESS + ' '+ prop.CITY + ', ' + prop.STATE + ' - ' + prop.TELEPHONE;
-
-
-
-          link.addEventListener('click', function(e) {
-            var clickedListing = data.features[this.dataPosition];
-            flyToHospital(clickedListing);
-            createPopUp(clickedListing);
-            var activeItem = document.getElementsByClassName('active');
-
-            if (activeItem[0]) {
-              activeItem[0].classList.remove('active');
-            }
-            this.parentNode.classList.add('active');
-
+        function flyToHospital(currentFeature) {
+          map.flyTo({
+            center: currentFeature.geometry.coordinates,
+            zoom: 15
           });
         }
-      }
-    </script>
-  </body>
+
+
+        function createPopUp(currentFeature) {
+          var popUps = document.getElementsByClassName('mapboxgl-popup');
+          if (popUps[0]) popUps[0].remove();
+
+          var prop = currentFeature.properties;
+          var popup = new mapboxgl.Popup({closeOnClick: false})
+            .setLngLat(currentFeature.geometry.coordinates)
+            .setHTML('<h3>' + prop.NAME + '</h3>' +
+              '<h4>' + prop.ADDRESS + ' '+ prop.CITY + ', ' + prop.STATE+ ' ' + prop.TELEPHONE + '\n' + 'TYPE: ' + prop.TYPE + '\n' + prop.WEBSITE.link(prop.WEBSITE) +'<h4>')
+            .addTo(map);
+        }
+
+
+        function buildLocationList(data) {
+          for (i = 0; i < data.features.length; i++) {
+            var currentFeature = data.features[i];
+            var prop = currentFeature.properties;
+            var listings = document.getElementById('listings');
+            var listing = listings.appendChild(document.createElement('div'));
+            listing.className = 'item';
+            listing.id = "listing-" + i;
+            var link = listing.appendChild(document.createElement('a'));
+            link.href = '#';
+            link.className = 'title';
+            link.dataPosition = i;
+            link.innerHTML = prop.NAME;
+            var details = listing.appendChild(document.createElement('div'));
+            details.innerHTML = prop.ADDRESS + ' '+ prop.CITY + ', ' + prop.STATE + ' - ' + prop.TELEPHONE;
+
+
+
+            link.addEventListener('click', function(e) {
+              var clickedListing = data.features[this.dataPosition];
+
+              flyToHospital(clickedListing);
+              createPopUp(clickedListing);
+              var activeItem = document.getElementsByClassName('active');
+
+              if (activeItem[0]) {
+                activeItem[0].classList.remove('active');
+              }
+              this.parentNode.classList.add('active');
+
+            });
+          }
+        }
+
+      </script>
+    </body>
 
 </html>
