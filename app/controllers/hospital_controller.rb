@@ -1,6 +1,10 @@
 class HospitalController < ApplicationController
   def index
-    @location = Location.find_by_name(current_user.location) || Location.find_by_name("Honolulu")
+    if current_user
+      @location = Location.find_by_name(current_user.location)
+    else
+      @location = Location.find_by_name("Honolulu")
+    end
   end
 
   private
